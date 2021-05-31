@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+
+    <EditText
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:text="@string/text"
+        android:textColor="@color/black"
+        android:textSize="41sp"
+        android:inputType="text"
+        tools:ignore="LabelFor,TextViewEdits"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textpersonname"
+        android:textSize="41sp"
+        android:textColor="@color/black"
+        android:inputType="textPersonName"
+        tools:ignore="LabelFor,TextViewEdits"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/textView5"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/phone"
+        android:textSize="41sp"
+        android:textColor="@color/black"
+        android:inputType="phone"
+        tools:ignore="LabelFor,TextViewEdits"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/textView6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/number1"
+        android:textSize="41sp"
+        android:textColor="@color/black"
+        android:inputType="number"
+        tools:ignore="LabelFor,TextViewEdits"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/textpassword"
+        android:textSize="41sp"
+        android:textColor="@color/black"
+        android:inputType="textPassword"
+        tools:ignore="LabelFor,TextViewEdits"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/textView8"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/extemailaddress"
+        android:textSize="41sp"
+        android:textColor="@color/black"
+        android:inputType="textEmailAddress"
+        tools:ignore="LabelFor,TextViewEdits"
+        android:autofillHints="" />
+
+    <EditText
+        android:id="@+id/textView9"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textWebEmailAddress"
+        android:text="@string/textwebemailaddress"
+        android:textColor="@color/black"
+        android:textSize="41sp"
+        tools:ignore="LabelFor,TextViewEdits"
+        android:autofillHints="" />
+
+
+</LinearLayout>

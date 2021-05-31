@@ -1,0 +1,17 @@
+<resources>
+    <string name="app_name">Hello Geekbrains</string>
+    <string name="hello_android_studio">Hello Android Studio!</string>
+    <string name="button">BUTTON</string>
+    <string name="switch1">Switch</string>
+    <string name="number">Number</string>
+    <string name="checkbox">CheckBox</string>
+    <string name="togglebutton">ToggleButton</string>
+    <string name="text">text</string>
+    <string name="textview">TextView</string>
+    <string name="textpersonname">textPersonName</string>
+    <string name="phone">phone</string>
+    <string name="number1">number1</string>
+    <string name="textpassword">textPassword</string>
+    <string name="extemailaddress">textEmailAddress</string>
+    <string name="textwebemailaddress">textWebEmailAddress</string>
+</resources>
