@@ -16,5 +16,7 @@
     <string name="_multiply">x</string>
     <string name="_toSplit">/</string>
     <string name="_point">,</string>
+    <string name="reset">reset</string>
+
 
 </resources>
