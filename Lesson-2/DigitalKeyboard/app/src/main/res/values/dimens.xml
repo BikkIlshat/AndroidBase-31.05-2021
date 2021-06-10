@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+
+<dimen name="buttonTextSize">23sp</dimen>
+
+<dimen name="textViewTextSize">52sp</dimen>
+
+<dimen name="marginEnd">8dp</dimen>
+
+<dimen name="marginBottom">0dp</dimen>
+
+
+<dimen name="myStyleWidth">60dp</dimen>
+
+<dimen name="myStyleHeight">50dp</dimen>
+
+
+
+
+
+</resources>
