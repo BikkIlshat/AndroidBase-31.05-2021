@@ -9,7 +9,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/sand"
-    android:orientation="vertical">
+    android:orientation="horizontal">
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/one"
@@ -22,7 +22,7 @@
         app:layout_constraintEnd_toStartOf="@id/two"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/invisible1" />
+        app:layout_constraintTop_toBottomOf="@id/textView" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/two"
@@ -34,7 +34,7 @@
         app:layout_constraintBottom_toTopOf="@id/five"
         app:layout_constraintEnd_toStartOf="@id/three"
         app:layout_constraintStart_toEndOf="@id/one"
-        app:layout_constraintTop_toBottomOf="@id/invisible2" />
+        app:layout_constraintTop_toBottomOf="@id/textView" />
 
 
     <com.google.android.material.button.MaterialButton
@@ -47,7 +47,7 @@
         app:layout_constraintBottom_toTopOf="@id/six"
         app:layout_constraintEnd_toStartOf="@id/button_division"
         app:layout_constraintStart_toEndOf="@id/two"
-        app:layout_constraintTop_toBottomOf="@id/invisible3" />
+        app:layout_constraintTop_toBottomOf="@id/textView" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/four"
@@ -60,7 +60,8 @@
         app:layout_constraintEnd_toStartOf="@id/five"
         app:layout_constraintHorizontal_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/one" />
+        app:layout_constraintTop_toBottomOf="@id/one"
+        />
 
 
     <com.google.android.material.button.MaterialButton
@@ -167,7 +168,6 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_division"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/marginEnd"
@@ -178,13 +178,13 @@
         app:layout_constraintBottom_toTopOf="@id/button_multiply"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@id/three"
-        app:layout_constraintTop_toBottomOf="@id/reset"
-        app:layout_constraintVertical_chainStyle="packed" />
+
+        app:layout_constraintVertical_chainStyle="packed"
+        app:layout_constraintTop_toBottomOf="@id/textView" />
 
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_multiply"
-
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/marginEnd"
@@ -212,18 +212,17 @@
         app:layout_constraintTop_toBottomOf="@id/button_multiply" />
 
 
-
     <ImageButton
         android:id="@+id/imageButton"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_edit"
+        android:contentDescription="@string/Settings"
         app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintVertical_chainStyle="packed"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:ignore="MissingConstraints"
-        android:contentDescription="@string/Settings" />
+        app:layout_constraintVertical_chainStyle="packed"
+        app:srcCompat="@android:drawable/ic_menu_edit"
+        tools:ignore="MissingConstraints" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/button_plus"
@@ -242,46 +241,31 @@
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/reset"
-        android:layout_width="94dp"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginEnd="@dimen/marginEnd"
         android:backgroundTint="#7203000C"
         android:text="@string/reset"
         android:textSize="@dimen/buttonTextSize"
         app:iconTint="#1BFFFFFF"
-        app:layout_constraintBottom_toTopOf="@id/button_division"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/invisible3"
-        app:layout_constraintTop_toBottomOf="@id/textView" />
+        app:layout_constraintEnd_toStartOf="@id/one"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintHorizontal_bias="0.5"/>
 
 
     <TextView
         android:id="@+id/textView"
-        android:layout_width="match_parent"
+        android:layout_width="729dp"
         android:layout_height="0dp"
-        android:gravity="right|center_vertical"
+        android:gravity="right|center_horizontal"
         android:textColor="#1B289A"
         android:textSize="@dimen/textViewTextSize"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/two"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/invisible2"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/imageButton"
         tools:ignore="MissingConstraints,RtlHardcoded,TextViewEdits" />
-
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/invisible1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="@dimen/marginEnd"
-        android:textSize="@dimen/buttonTextSize"
-        android:visibility="invisible"
-        app:layout_constraintBottom_toTopOf="@id/one"
-        app:layout_constraintEnd_toStartOf="@id/invisible2"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="packed"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/textView" />
 
 
     <com.google.android.material.button.MaterialButton
@@ -293,10 +277,9 @@
         android:visibility="invisible"
         app:layout_constraintBottom_toTopOf="@id/two"
         app:layout_constraintEnd_toStartOf="@id/invisible3"
-        app:layout_constraintStart_toEndOf="@id/invisible1"
         app:layout_constraintTop_toBottomOf="@id/textView"
+        app:layout_constraintVertical_bias="0.568"
         app:layout_constraintVertical_chainStyle="packed" />
-
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/invisible3"
