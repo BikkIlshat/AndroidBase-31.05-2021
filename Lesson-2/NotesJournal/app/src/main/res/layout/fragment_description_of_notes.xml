@@ -12,7 +12,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        tools:text="какой-то текст"/>
+        tools:text="Наименование"
+        android:inputType="text"/>
 
 
 
@@ -21,13 +22,15 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        tools:text="какой-то текст"/>
+        tools:text="Дата создания"
+        android:inputType="date"/>
 
     <TextView
         android:id="@+id/textView_describe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        tools:text="какой-то текст"/>
+        tools:text="Описание"
+        android:inputType="text"/>
 
 </LinearLayout>

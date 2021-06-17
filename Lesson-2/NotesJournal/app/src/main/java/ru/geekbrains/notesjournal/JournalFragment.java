@@ -105,7 +105,7 @@ public class JournalFragment extends Fragment {
 
     private void showDescriptionOfNotes(NoteData currentNotes) {
         if (isLandscape) {
-            showPortDescriptionOfNotes(currentNotes);
+            showLandDescriptionOfNotes(currentNotes);
         } else {
             showPortDescriptionOfNotes(currentNotes);
         }
