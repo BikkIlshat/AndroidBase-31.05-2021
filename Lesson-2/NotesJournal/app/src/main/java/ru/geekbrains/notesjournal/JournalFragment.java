@@ -17,6 +17,8 @@ import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
+import java.util.Date;
+
 
 public class JournalFragment extends Fragment {
 
@@ -42,11 +44,13 @@ public class JournalFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState); // Обязательно вызываем какую-нибудь передыдущую функцию. (onViewCreated - это базовая функция)
     // что бы проинициилизировать список создаём последовательность:
-        initlist((LinearLayout) view);
+        initList(view);
     }
 
-    private void initlist(LinearLayout view) {
+    private void initList(View view) {
         // LinearLayout - потому что наш фрагмент создали на макете LinearLayout
+
+        LinearLayout layoutView = (LinearLayout) view;
         String[] notes = getResources().getStringArray(R.array.notes); // получаем наш спискок notes (наши заметки) getResources - получить ресурсы; getStringArray - получить массив строк
 
         // В этом цикле создаём элемент TextView,
@@ -59,11 +63,11 @@ public class JournalFragment extends Fragment {
             TextView tv = new TextView(getContext()); // У нас есть TextView -  это как бы показатель того что мы все текстовые элементы можем создавать сами из кода и как-то куда-то добавлять, в данном случае здесь мы их создали
             tv.setText(note);
             tv.setTextSize(30);
-            view.addView(tv); // добавляем командой addView() в наш  layoutView
+            layoutView.addView(tv); // добавляем командой addView() в наш  layoutView
             final int index = i; // законстантили
             tv.setOnClickListener(v -> {
-                currentPosition = index;
-                showDescriptionOfNotes(index);
+                currentNote = new NoteData(note, note, new Date());
+                showDescriptionOfNotes(currentNote);
             });
         }
     }
@@ -78,41 +82,40 @@ public class JournalFragment extends Fragment {
 
     }
 
-
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
+        outState.putParcelable(CURRENT_NOTE, currentNote);
         super.onSaveInstanceState(outState);
-        outState.putInt(CURRENT_NOTE, currentPosition);
-        super.onSaveInstanceState(outState);
-
     }
 
     @Override
     public void onViewStateRestored(@Nullable Bundle savedInstanceState) {
         super.onViewStateRestored(savedInstanceState);
         if (savedInstanceState != null) {
-            currentPosition = savedInstanceState.getInt(CURRENT_NOTE, 0);
-        }
-        if (isLandscape) {
-            showLandDescriptionOfNotes(currentPosition);
-        }
-
-    }
-
-    private void showDescriptionOfNotes(int index) {
-        if (isLandscape) {
-            showLandDescriptionOfNotes(index);
+            currentNote = savedInstanceState.getParcelable(CURRENT_NOTE);
         } else {
-            showPortDescriptionOfNotes(index);
+            currentNote = new NoteData("No name", getResources().getStringArray(R.array.notes)[0], new Date());
+        }
+
+        if (isLandscape) {
+            showDescriptionOfNotes(currentNote);
+        }
+
+    }
+
+    private void showDescriptionOfNotes(NoteData currentNotes) {
+        if (isLandscape) {
+            showPortDescriptionOfNotes(currentNotes);
+        } else {
+            showPortDescriptionOfNotes(currentNotes);
         }
     }
 
 
-    private void showLandDescriptionOfNotes(int index) {
-        DescriptionOfNotesFragment detail = DescriptionOfNotesFragment.newInstance(index);
+    private void showLandDescriptionOfNotes(NoteData currentNotes) {
+        DescriptionOfNotesFragment detail = DescriptionOfNotesFragment.newInstance(currentNotes);
 
-        FragmentManager fragmentManager = requireActivity()
-                .getSupportFragmentManager();
+        FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
         fragmentTransaction.replace(R.id.fl_describe_note_container, detail);
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
@@ -125,11 +128,20 @@ public class JournalFragment extends Fragment {
     // как нам этот фрагмент вызывать ? перейдем в -> activity_main
     // Делаем обработку нажатия на наши заметки
     // Показываем в портретной  ориентации
-    private void showPortDescriptionOfNotes(int index) {
-        Intent intent = new Intent();
-        intent.setClass(getActivity(), MainActivity.class);
-        intent.putExtra(DescriptionOfNotesFragment.ARG_INDEX, index);
-        startActivity(intent);
+
+    private void showPortDescriptionOfNotes(NoteData noteData) {
+        DescriptionOfNotesFragment detail = DescriptionOfNotesFragment.newInstance(noteData);
+
+        String backStateName = this.getClass().getName();
+        FragmentManager manager = requireActivity().getSupportFragmentManager();
+        boolean fragmentPopped = manager.popBackStackImmediate(backStateName, 0);
+
+        if (!fragmentPopped) { //fragment not in back stack, create it.
+            FragmentTransaction ft = manager.beginTransaction();
+            ft.replace(R.id.fl_notes_container, detail);
+            ft.addToBackStack(backStateName);
+            ft.commit();
+        }
     }
 
 }
