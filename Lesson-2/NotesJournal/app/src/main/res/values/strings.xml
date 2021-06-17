@@ -1,0 +1,11 @@
+<resources>
+    <string name="app_name">Notes Journal</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="Заметка_1">Описание заметки_1</string>
+    <string name="Заметка_2">Описание заметки_2</string>
+    <string name="Заметка_3">Описание заметки_3</string>
+
+
+</resources>
