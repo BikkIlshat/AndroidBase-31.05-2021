@@ -2,31 +2,33 @@ package ru.geekbrains.notesjournal;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.widget.AppCompatEditText;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.DatePicker;
+import android.widget.TextView;
 
 
 public class DescriptionOfNotesFragment extends Fragment {
 
 
-    public static final String ARG_INDEX = "index";
+    public static final String KEY_ARG = "key_arg";
 
-
-    private int index;
 
     // Фабричный метод создания фрагмента
     // Фрагменты рекомендуется создавать через фабричные методы.
     // newInstance - метод который умеет создавать объект. Этот метод на на входе получает параметр  индекс элемента массива
-    public static DescriptionOfNotesFragment newInstance(int index) {
-        DescriptionOfNotesFragment fragment = new DescriptionOfNotesFragment(); // создание
 
-        //Передача парааметров
+
+    public static DescriptionOfNotesFragment newInstance(NoteData noteData) {
+        DescriptionOfNotesFragment fragment = new DescriptionOfNotesFragment();
         Bundle args = new Bundle();
-        args.putInt(ARG_INDEX, index);
+        args.putParcelable(KEY_ARG, noteData);
         fragment.setArguments(args);
         return fragment;
     }
@@ -34,10 +36,7 @@ public class DescriptionOfNotesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            index = getArguments().getInt(ARG_INDEX);
 
-        }
     }
 
     /*
@@ -57,29 +56,32 @@ public class DescriptionOfNotesFragment extends Fragment {
         // Таким способом можно получить головной элемент из макета
         View view = inflater.inflate(R.layout.fragment_description_of_notes, container, false);
 
-        // Пишем нашу обработку:
-
-        // Мы должны в нашем view найти нейкий элемент называющийся EditText
-        AppCompatEditText editText = view.findViewById(R.id.editTextTextMultiLine);
-
-
-        // Дальше должны получить из ресурсов наш массив
-        String[] str = getResources().getStringArray(R.array.description_of_notes_editTextTextMultiLine);
-
-
-
-        // Тут я не понимаю как дельше двигаться, что бы  нажимая на Заметку открывалась описание заметки
-//        int getIndex = str.getClass().toString().indexOf(index, -1);
-
-        // Выбрать по индексу подходящий и  засэтать
-
-
-        // и теперь это описание должны отправить  в AppCompatEditText которе называется editText
-
-
         return view;
-
 
     }
 
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        init(view);
+    }
+
+    private void init(View view) {
+        TextView cityName= view.findViewById(R.id.textView_name);
+        TextView describe= view.findViewById(R.id.textView_describe);
+        TextView date= view.findViewById(R.id.textView_date);
+
+        if (getArguments() != null) {
+            NoteData noteData = getArguments().getParcelable(KEY_ARG);
+
+            if(noteData != null) {
+                cityName.setText(noteData.getName());
+                describe.setText(noteData.getDescribe());
+                date.setText(noteData.getDate().toString());
+            }
+        }
+
+
+    }
 }
