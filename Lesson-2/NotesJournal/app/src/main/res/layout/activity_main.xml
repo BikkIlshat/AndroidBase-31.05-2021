@@ -1,35 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
 
-    <fragment
-        android:id="@+id/notes"
-        android:name="ru.geekbrains.notesjournal.JournalFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-    />
-
-
-<!--    Сюда я попал наэтом действии-->
-<!--    // Дальше этот фрагмент должны добавить на экран: тут я пошел в активити_мэйн-->
     <FrameLayout
-        android:id="@+id/fragment_container"
+        android:id="@+id/fl_notes_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-    />
-
+        android:layout_height="match_parent"/>
 </FrameLayout>
-
-
-
-<!--    Разберём, какие здесь присутствуют элементы:-->
-<!--    1. FrameLayout — это зарезервированное место на экране, куда можно вставить другие элементы.
-        Иными словами, это контейнер для элементов.-->
-<!--    2. fragment — это элемент-фрагмент, который будет вставляться в FrameLayout.-->
-
-
-<!--    Обратите внимание на атрибут фрагмента:-->
-<!--    android:name="ru.geekbrains.notesjournal.JournalFragment". Здесь необходимо задать-->
-<!--    имя класса фрагмента. В этом случае фрагмент будет создаваться автоматически.-->

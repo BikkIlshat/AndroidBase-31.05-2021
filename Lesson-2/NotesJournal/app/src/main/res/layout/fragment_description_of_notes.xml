@@ -4,22 +4,30 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".DescriptionOfNotes">
+    tools:context=".DescriptionOfNotesFragment">
 
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/editTextTextMultiLine"
+    <TextView
+        android:id="@+id/textView_name"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="150dp"
-        android:layout_marginBottom="60dp"
-        android:ems="10"
-        android:text="какой-то текст"
-        android:textSize="40sp"
-        android:gravity="start|top"
-        android:importantForAutofill="no"
-        android:inputType="textMultiLine"
-        android:lines="10"
-        tools:ignore="LabelFor" />
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        tools:text="какой-то текст"/>
+
+
+
+    <TextView
+        android:id="@+id/textView_date"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        tools:text="какой-то текст"/>
+
+    <TextView
+        android:id="@+id/textView_describe"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        tools:text="какой-то текст"/>
 
 </LinearLayout>

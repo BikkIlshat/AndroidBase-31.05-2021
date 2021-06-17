@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Передача данных в эту активити Обработка:
         if (savedInstanceState == null) {
-            DescriptionOfNotes details = new DescriptionOfNotes(); // DescriptionOfNotes - это наш фрагмент
+            DescriptionOfNotesFragment details = new DescriptionOfNotesFragment(); // DescriptionOfNotes - это наш фрагмент
             details.setArguments(getIntent().getExtras());
 
 

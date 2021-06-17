@@ -8,9 +8,9 @@
 
 
     <string-array name="description_of_notes_editTextTextMultiLine">
-        <item>Описание заметки_1</item>
-        <item>Описание заметки_2</item>
-        <item>Описание заметки_3</item>
+        <item>Наименование</item>
+        <item>Описание</item>
+        <item>Дата создания</item>
     </string-array>
 
 </resources>

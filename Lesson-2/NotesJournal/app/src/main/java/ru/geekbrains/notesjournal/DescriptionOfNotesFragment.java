@@ -1,6 +1,5 @@
 package ru.geekbrains.notesjournal;
 
-import android.content.res.TypedArray;
 import android.os.Bundle;
 
 import androidx.appcompat.widget.AppCompatEditText;
@@ -9,12 +8,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.EditText;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 
-public class DescriptionOfNotes extends Fragment {
+public class DescriptionOfNotesFragment extends Fragment {
 
 
     public static final String ARG_INDEX = "index";
@@ -25,8 +21,8 @@ public class DescriptionOfNotes extends Fragment {
     // Фабричный метод создания фрагмента
     // Фрагменты рекомендуется создавать через фабричные методы.
     // newInstance - метод который умеет создавать объект. Этот метод на на входе получает параметр  индекс элемента массива
-    public static DescriptionOfNotes newInstance(int index) {
-        DescriptionOfNotes fragment = new DescriptionOfNotes(); // создание
+    public static DescriptionOfNotesFragment newInstance(int index) {
+        DescriptionOfNotesFragment fragment = new DescriptionOfNotesFragment(); // создание
 
         //Передача парааметров
         Bundle args = new Bundle();
@@ -73,7 +69,7 @@ public class DescriptionOfNotes extends Fragment {
 
 
         // Тут я не понимаю как дельше двигаться, что бы  нажимая на Заметку открывалась описание заметки
-        int getIndex = str.getClass().toString().indexOf(index, -1);
+//        int getIndex = str.getClass().toString().indexOf(index, -1);
 
         // Выбрать по индексу подходящий и  засэтать
 
