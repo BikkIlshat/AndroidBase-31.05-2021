@@ -19,6 +19,8 @@
     <string name="main_screen">main_screen</string>
     <string name="favorite_screen">favorite_screen</string>
     <string name="back">back</string>
+    <string name="item1">item1</string>
+    <string name="item2">item2</string>
 
 
 </resources>
