@@ -18,6 +18,7 @@
     <string name="delete_before_add" />
     <string name="main_screen">main_screen</string>
     <string name="favorite_screen">favorite_screen</string>
+    <string name="back">back</string>
 
 
 </resources>
