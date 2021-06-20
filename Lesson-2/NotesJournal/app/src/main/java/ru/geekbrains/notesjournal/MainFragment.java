@@ -1,7 +1,6 @@
 package ru.geekbrains.notesjournal;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
@@ -20,7 +19,7 @@ import android.widget.TextView;
 import java.util.Date;
 
 
-public class JournalFragment extends Fragment {
+public class MainFragment extends Fragment {
 
     public static final String CURRENT_NOTE = "CurrentNote";
     private NoteData currentNote; // Текущая позиция (выбранная заметка)
@@ -30,7 +29,7 @@ public class JournalFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_journal, container, false);
+        return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
     // Обратите внимание, что в ниже приведенном  методе onViewCreated() вызывается метод initList(), в котором
