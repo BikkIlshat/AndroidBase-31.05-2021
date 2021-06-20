@@ -7,7 +7,7 @@
     tools:context=".DescriptionOfNotesFragment">
 
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/textView_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -17,15 +17,14 @@
 
 
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/textView_date"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textSize="18sp"
-        tools:text="Дата создания"
-        android:inputType="date"/>
+        tools:text="Дата создания"/>
 
-    <TextView
+    <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/textView_describe"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

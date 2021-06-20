@@ -7,10 +7,10 @@
     </string-array>
 
 
-    <string-array name="description_of_notes_editTextTextMultiLine">
-        <item>Наименование</item>
-        <item>Описание</item>
-        <item>Дата создания</item>
-    </string-array>
+<!--    <string-array name="description_of_notes_editTextTextMultiLine">-->
+<!--        <item>Наименование</item>-->
+<!--        <item>Описание</item>-->
+<!--        <item>Дата создания</item>-->
+<!--    </string-array>-->
 
 </resources>

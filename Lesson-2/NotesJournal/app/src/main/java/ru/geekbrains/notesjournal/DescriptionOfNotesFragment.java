@@ -20,7 +20,6 @@ import java.util.Date;
 
 public class DescriptionOfNotesFragment extends Fragment {
 
-
     public static final String KEY_ARG = "key_arg";
 
 
@@ -53,40 +52,15 @@ public class DescriptionOfNotesFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
         // подправляем код  return inflater.inflate(R.layout.fragment_description_of_notes, container, false); на ниже приведенный:
-
         // Таким способом можно получить головной элемент из макета
         View view = inflater.inflate(R.layout.fragment_description_of_notes, container, false);
-
-        initList(view);
 
         return view;
 
     }
 
-    private void initList(View view) {
-        // LinearLayout - потому что наш фрагмент создали на макете LinearLayout
-
-        LinearLayout layoutView = (LinearLayout) view;
-        String[] stringArray = getResources().getStringArray(R.array.description_of_notes_editTextTextMultiLine); // получаем наш спискок notes (наши заметки) getResources - получить ресурсы; getStringArray - получить массив строк
-
-        // В этом цикле создаём элемент TextView,
-        // заполняем его значениями,
-        // и добавляем на экран.
-        // Кроме того, создаём обработку касания на элемент
-
-        for(int i  = 0; i < stringArray.length; i++){
-            String str = stringArray[i];
-            TextView tv = new TextView(getContext()); // У нас есть TextView -  это как бы показатель того что мы все текстовые элементы можем создавать сами из кода и как-то куда-то добавлять, в данном случае здесь мы их создали
-            tv.setText(str);
-            tv.setTextSize(30);
-            tv.setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_CLASS_DATETIME|InputType.TYPE_CLASS_NUMBER);
-            layoutView.addView(tv); // добавляем командой addView() в наш  layoutView
-
-        }
-    }
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -94,9 +68,9 @@ public class DescriptionOfNotesFragment extends Fragment {
     }
 
     private void init(View view) {
-        TextView Name= view.findViewById(R.id.textView_name);
-        TextView describe= view.findViewById(R.id.textView_describe);
-        TextView date= view.findViewById(R.id.textView_date);
+        TextView Name = view.findViewById(R.id.textView_name);
+        TextView describe = view.findViewById(R.id.textView_describe);
+        TextView date = view.findViewById(R.id.textView_date);
 
         if (getArguments() != null) {
             NoteData noteData = getArguments().getParcelable(KEY_ARG);
@@ -107,7 +81,6 @@ public class DescriptionOfNotesFragment extends Fragment {
                 date.setText(noteData.getDate().toString());
             }
         }
-
 
     }
 }

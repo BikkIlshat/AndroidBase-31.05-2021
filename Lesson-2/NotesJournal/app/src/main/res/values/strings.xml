@@ -6,6 +6,10 @@
     <string name="Заметка_1">Описание заметки_1</string>
     <string name="Заметка_2">Описание заметки_2</string>
     <string name="Заметка_3">Описание заметки_3</string>
+    <string name="settings">settings</string>
+    <string name="main">main</string>
+    <string name="favorite">favorite</string>
+    <string name="search">search</string>
 
 
 </resources>

@@ -26,9 +26,7 @@ public class JournalFragment extends Fragment {
     private NoteData currentNote; // Текущая позиция (выбранная заметка)
     private boolean isLandscape;
 
-     // inflater.inflate -  работая с с xml можем указать его в методе что бы он был в виде объекта.
-     // Превращает наш  fragment_journal в объект, в данном случае будет объектом  Java-вского элемнта View
-    // и который обратно передадим системе  - и вот этот View будет являться фрагментом.
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,6 +36,7 @@ public class JournalFragment extends Fragment {
     // Обратите внимание, что в ниже приведенном  методе onViewCreated() вызывается метод initList(), в котором
     //создаётся список динамических элементов из массива строк, описанного в ресурсах.
     // вызывается после создания макета фрагмента, здесь мы проинициализируем список
+
 
     // Ниже инициилизируем список:
     @Override // когда создали  метод  public View onCreateView - этот  же самый View прилетает в параметы нижеприведенного метода  (@NonNull View view, @Nullable Bundle savedInstanceState)
