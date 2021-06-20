@@ -3,4 +3,16 @@
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
+
+
+    <androidx.appcompat.widget.AppCompatEditText
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:text="@string/main_screen"
+        android:textSize="@dimen/fragment_dimen"
+        android:enabled="false"
+
+        />
 </LinearLayout>
