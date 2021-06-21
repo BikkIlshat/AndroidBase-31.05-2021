@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="notes">
+        <item>Заметка_1</item>
+        <item>Заметка_2</item>
+        <item>Заметка_3</item>
+    </string-array>
+
+
+<!--    <string-array name="description_of_notes_editTextTextMultiLine">-->
+<!--        <item>Наименование</item>-->
+<!--        <item>Описание</item>-->
+<!--        <item>Дата создания</item>-->
+<!--    </string-array>-->
+
+</resources>

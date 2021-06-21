@@ -17,6 +17,12 @@
     <string name="_toSplit">/</string>
     <string name="_point">,</string>
     <string name="reset">reset</string>
+    <string name="_myTheme">Theme</string>
+    <string name="Settings">Settings</string>
 
+    <string name="my_cool_style">My cool style</string>
+    <string name="material_light">Material light</string>
+    <string name="material_light_action_bar_dark">Material light action bardark</string>
+    <string name="material_dark">Material dark</string>
 
 </resources>
