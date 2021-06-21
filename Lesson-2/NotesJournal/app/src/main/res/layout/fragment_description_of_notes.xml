@@ -13,7 +13,8 @@
         android:layout_height="wrap_content"
         android:textSize="18sp"
         tools:text="Наименование"
-        android:inputType="text"/>
+        android:inputType="text"
+        android:layout_marginTop="@dimen/layout_marginTop"/>
 
 
 
