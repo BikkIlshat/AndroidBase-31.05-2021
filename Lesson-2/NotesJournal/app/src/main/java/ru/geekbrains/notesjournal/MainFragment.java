@@ -32,6 +32,16 @@ public class MainFragment extends Fragment {
 
 
     @Override
+    public void onAttach(@NonNull Context context) {
+
+        super.onAttach(context);
+
+        Configuration configuration = getResources().getConfiguration();
+        isLandscape=configuration.orientation==Configuration.ORIENTATION_LANDSCAPE;
+
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
        View view =  inflater.inflate(R.layout.fragment_main, container, false);
        setHasOptionsMenu(true);
@@ -98,14 +108,6 @@ public class MainFragment extends Fragment {
 
 
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-        isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-
-    }
-
-    @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putParcelable(CURRENT_NOTE, currentNote);
         super.onSaveInstanceState(outState);
@@ -140,7 +142,6 @@ public class MainFragment extends Fragment {
 
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fl_describe_note_container, detail);
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
 

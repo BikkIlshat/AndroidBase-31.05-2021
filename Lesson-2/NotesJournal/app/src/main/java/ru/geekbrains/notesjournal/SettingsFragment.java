@@ -165,7 +165,7 @@ onViewCreated — вызывается, когда вид сформирован
         // Настройки сохраняются посредством специального класса editor
         SharedPreferences.Editor editor = sharedPref.edit();
         // Задаём значения настроек
-        editor.putBoolean(Settings.IS_BACK_STACK_USED, Settings.isBackStack);
+         editor.putBoolean(Settings.IS_BACK_STACK_USED, Settings.isBackStack);
         editor.putBoolean(Settings.IS_ADD_FRAGMENT_USED, Settings.isAddFragment);
         editor.putBoolean(Settings.IS_BACK_AS_REMOVE_FRAGMENT, Settings.isBackAsRemove);
         editor.putBoolean(Settings.IS_DELETE_FRAGMENT_BEFORE_ADD, Settings.isDeleteBeforeAdd);

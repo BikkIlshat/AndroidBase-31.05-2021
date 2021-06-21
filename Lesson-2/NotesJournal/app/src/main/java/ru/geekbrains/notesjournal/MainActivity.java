@@ -33,13 +33,7 @@ public class MainActivity extends AppCompatActivity {
         readSettings();
         initView();
 
-        if (savedInstanceState == null) {
-            FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-            fragmentTransaction.add(R.id.fl_notes_container, new MainFragment());
-            fragmentTransaction.commit();
-        } else {
 
-        }
     }
 
     private void initView() {
@@ -197,8 +191,7 @@ public class MainActivity extends AppCompatActivity {
 //Получить менеджер фрагментов
         FragmentManager fragmentManager = getSupportFragmentManager();
 // Открыть транзакцию
-        FragmentTransaction fragmentTransaction =
-                fragmentManager.beginTransaction();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 // Удалить видимый фрагмент
         if (Settings.isDeleteBeforeAdd){
             Fragment fragmentToRemove = getVisibleFragment(fragmentManager);
@@ -206,8 +199,6 @@ public class MainActivity extends AppCompatActivity {
                 fragmentTransaction.remove(fragmentToRemove);
             }
         }
-
-
         // Добавить фрагмент
         if (Settings.isAddFragment) {
             fragmentTransaction.add(R.id.fragment_container, fragment);
@@ -228,11 +219,10 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref =
                 getSharedPreferences(Settings.SHARED_PREFERENCE_NAME, MODE_PRIVATE);
 // Считываем значения настроек
-        Settings.isBackStack = sharedPref.getBoolean(Settings.IS_BACK_STACK_USED,
-                false);
+        Settings.isBackStack = sharedPref.getBoolean(Settings.IS_BACK_STACK_USED, true);
         Settings.isAddFragment =
                 sharedPref.getBoolean(Settings.IS_ADD_FRAGMENT_USED, true);
-        Settings.isBackAsRemove =
+       Settings.isBackAsRemove =
                 sharedPref.getBoolean(Settings.IS_BACK_AS_REMOVE_FRAGMENT, true);
         Settings.isDeleteBeforeAdd =
                 sharedPref.getBoolean(Settings.IS_DELETE_FRAGMENT_BEFORE_ADD, false);
