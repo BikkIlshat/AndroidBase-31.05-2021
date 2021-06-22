@@ -24,6 +24,8 @@ import com.google.android.material.navigation.NavigationView;
 
 import java.util.List;
 
+import ru.geekbrains.notesjournal.ui.NotesJournalFragment;
+
 public class MainActivity extends AppCompatActivity {
 
     @Override
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         readSettings();
         initView();
 
+        Fragment fragment = NotesJournalFragment.newInstance();
+        addFragment(fragment);
 
     }
 
@@ -40,7 +44,6 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = initToolbar();
         initDrawer(toolbar);
         initButtonMain();
-        initButtonFavorite();
         initButtonSettings();
         initButtonBack();
     }
@@ -95,11 +98,8 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_settings:
                 addFragment(new SettingsFragment());
                 return true;
-            case R.id.action_main:
-                addFragment(new MainFragment());
-                return true;
-            case R.id.action_favorite:
-                addFragment(new FavoriteFragment());
+           case R.id.action_main:
+               addFragment(new MainFragment());
                 return true;
         }
         return false;
@@ -157,15 +157,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-    private void initButtonFavorite() {
-        Button buttonFavorite = findViewById(R.id.buttonFavorite);
-        buttonFavorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                addFragment(new FavoriteFragment());
-            }
-        });
-    }
+
     private void initButtonMain() {
         Button buttonMain = findViewById(R.id.buttonMain);
         buttonMain.setOnClickListener(new View.OnClickListener() {
@@ -193,12 +185,15 @@ public class MainActivity extends AppCompatActivity {
 // Открыть транзакцию
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
 // Удалить видимый фрагмент
-        if (Settings.isDeleteBeforeAdd){
-            Fragment fragmentToRemove = getVisibleFragment(fragmentManager);
-            if (fragmentToRemove != null) {
-                fragmentTransaction.remove(fragmentToRemove);
-            }
-        }
+        fragmentTransaction.replace(R.id.fragment_container, fragment);
+        fragmentTransaction.addToBackStack(null);
+
+//        if (Settings.isDeleteBeforeAdd){
+//            Fragment fragmentToRemove = getVisibleFragment(fragmentManager);
+//            if (fragmentToRemove != null) {
+//                fragmentTransaction.remove(fragmentToRemove);
+//            }
+//        }
         // Добавить фрагмент
         if (Settings.isAddFragment) {
             fragmentTransaction.add(R.id.fragment_container, fragment);
@@ -212,6 +207,7 @@ public class MainActivity extends AppCompatActivity {
         // Закрыть транзакцию
         fragmentTransaction.commit();
     }
+
 
     // Чтение настроек
     private void readSettings(){

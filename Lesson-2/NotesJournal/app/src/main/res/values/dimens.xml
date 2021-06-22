@@ -5,4 +5,5 @@
     <dimen name="nav_header_height">200dp</dimen>
     <dimen name="nav_header_dimen">42sp</dimen>
     <dimen name="layout_marginTop">48dp</dimen>
+    <dimen name="sizeItemList">32sp</dimen>
 </resources>

@@ -4,13 +4,26 @@
         <item>Заметка_1</item>
         <item>Заметка_2</item>
         <item>Заметка_3</item>
+        <item>Заметка_4</item>
+        <item>Заметка_5</item>
+        <item>Заметка_6</item>
+        <item>Заметка_7</item>
+        <item>Заметка_8</item>
+        <item>Заметка_9</item>
+        <item>Заметка_11</item>
+        <item>Заметка_12</item>
+        <item>Заметка_13</item>
+        <item>Заметка_14</item>
+        <item>Заметка_15</item>
+        <item>Заметка_16</item>
+        <item>Заметка_17</item>
+        <item>Заметка_18</item>
+        <item>Заметка_19</item>
+        <item>Заметка_20</item>
+        <item>Заметка_21</item>
+        <item>Заметка_22</item>
     </string-array>
 
 
-<!--    <string-array name="description_of_notes_editTextTextMultiLine">-->
-<!--        <item>Наименование</item>-->
-<!--        <item>Описание</item>-->
-<!--        <item>Дата создания</item>-->
-<!--    </string-array>-->
 
 </resources>

@@ -77,33 +77,37 @@ public class MainFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState); // Обязательно вызываем какую-нибудь передыдущую функцию. (onViewCreated - это базовая функция)
     // что бы проинициилизировать список создаём последовательность:
-        initList(view);
+       // initList(view);
     }
 
-    private void initList(View view) {
-        // LinearLayout - потому что наш фрагмент создали на макете LinearLayout
-
-        LinearLayout layoutView = (LinearLayout) view;
-        String[] notes = getResources().getStringArray(R.array.notes); // получаем наш спискок notes (наши заметки) getResources - получить ресурсы; getStringArray - получить массив строк
-
-        // В этом цикле создаём элемент TextView,
-        // заполняем его значениями,
-        // и добавляем на экран.
-        // Кроме того, создаём обработку касания на элемент
-
-        for(int i  = 0; i < notes.length; i++){
-            String note = notes[i];
-            TextView tv = new TextView(getContext()); // У нас есть TextView -  это как бы показатель того что мы все текстовые элементы можем создавать сами из кода и как-то куда-то добавлять, в данном случае здесь мы их создали
-            tv.setText(note);
-            tv.setTextSize(30);
-            layoutView.addView(tv); // добавляем командой addView() в наш  layoutView
-            final int index = i; // законстантили
-            tv.setOnClickListener(v -> {
-                currentNote = new NoteData(note, note, new Date());
-                showDescriptionOfNotes(currentNote);
-            });
-        }
-    }
+//    private void initList(View view) {
+//        // LinearLayout - потому что наш фрагмент создали на макете LinearLayout
+//
+//        LinearLayout layoutView = (LinearLayout) view;
+//        String[] notes = getResources().getStringArray(R.array.notes); // получаем наш спискок notes (наши заметки) getResources - получить ресурсы; getStringArray - получить массив строк
+//        LayoutInflater ltInflater = getLayoutInflater();
+//        // В этом цикле создаём элемент TextView,
+//        // заполняем его значениями,
+//        // и добавляем на экран.
+//        // Кроме того, создаём обработку касания на элемент
+//
+//        for(int i  = 0; i < notes.length; i++){
+//            String note = notes[i];
+//
+//            // Достаём элемент из item.xml
+//            View item = ltInflater.inflate(R.layout.item, layoutView, false);
+//            // Находим в этом элементе TextView
+//            TextView tv = item.findViewById(R.id.textView);
+//            tv.setText(note);
+//            layoutView.addView(item);
+//
+//            final int index = i; // законстантили
+//            tv.setOnClickListener(v -> {
+//                currentNote = new NoteData(note, note, new Date());
+//                showDescriptionOfNotes(currentNote);
+//            });
+//        }
+//    }
 
 
 
