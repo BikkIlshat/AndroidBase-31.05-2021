@@ -80,34 +80,6 @@ public class MainFragment extends Fragment {
        // initList(view);
     }
 
-//    private void initList(View view) {
-//        // LinearLayout - потому что наш фрагмент создали на макете LinearLayout
-//
-//        LinearLayout layoutView = (LinearLayout) view;
-//        String[] notes = getResources().getStringArray(R.array.notes); // получаем наш спискок notes (наши заметки) getResources - получить ресурсы; getStringArray - получить массив строк
-//        LayoutInflater ltInflater = getLayoutInflater();
-//        // В этом цикле создаём элемент TextView,
-//        // заполняем его значениями,
-//        // и добавляем на экран.
-//        // Кроме того, создаём обработку касания на элемент
-//
-//        for(int i  = 0; i < notes.length; i++){
-//            String note = notes[i];
-//
-//            // Достаём элемент из item.xml
-//            View item = ltInflater.inflate(R.layout.item, layoutView, false);
-//            // Находим в этом элементе TextView
-//            TextView tv = item.findViewById(R.id.textView);
-//            tv.setText(note);
-//            layoutView.addView(item);
-//
-//            final int index = i; // законстантили
-//            tv.setOnClickListener(v -> {
-//                currentNote = new NoteData(note, note, new Date());
-//                showDescriptionOfNotes(currentNote);
-//            });
-//        }
-//    }
 
 
 

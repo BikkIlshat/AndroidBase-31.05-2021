@@ -16,41 +16,6 @@
         android:gravity="bottom"
         tools:ignore="UselessParent">
 
-        <Button
-            android:id="@+id/buttonBack"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/back"
-            tools:ignore="MissingConstraints"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toStartOf="@id/buttonMain"
-            />
-        <Button
-            android:id="@+id/buttonMain"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/main"
-            tools:ignore="MissingConstraints"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/buttonBack"
-            app:layout_constraintEnd_toStartOf="@id/buttonSettings" />
-
-
-        <Button
-            android:id="@+id/buttonSettings"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="@string/settings"
-            tools:ignore="MissingConstraints"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@id/buttonMain"
-            app:layout_constraintEnd_toEndOf="parent"/>
-
-
 
 
         <FrameLayout
@@ -59,12 +24,6 @@
             android:layout_height="match_parent"
             tools:layout_editor_absoluteX="0dp"
             tools:layout_editor_absoluteY="2dp">
-
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextVываываываiew" />
 
 
         </FrameLayout>
