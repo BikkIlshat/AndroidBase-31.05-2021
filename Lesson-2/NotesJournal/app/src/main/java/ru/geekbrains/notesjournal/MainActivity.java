@@ -220,12 +220,9 @@ public class MainActivity extends AppCompatActivity {
                 getSharedPreferences(Settings.SHARED_PREFERENCE_NAME, MODE_PRIVATE);
 // Считываем значения настроек
         Settings.isBackStack = sharedPref.getBoolean(Settings.IS_BACK_STACK_USED, true);
-        Settings.isAddFragment =
-                sharedPref.getBoolean(Settings.IS_ADD_FRAGMENT_USED, true);
-       Settings.isBackAsRemove =
-                sharedPref.getBoolean(Settings.IS_BACK_AS_REMOVE_FRAGMENT, true);
-        Settings.isDeleteBeforeAdd =
-                sharedPref.getBoolean(Settings.IS_DELETE_FRAGMENT_BEFORE_ADD, false);
+        Settings.isAddFragment = sharedPref.getBoolean(Settings.IS_ADD_FRAGMENT_USED, true);
+        Settings.isBackAsRemove = sharedPref.getBoolean(Settings.IS_BACK_AS_REMOVE_FRAGMENT, true);
+        Settings.isDeleteBeforeAdd = sharedPref.getBoolean(Settings.IS_DELETE_FRAGMENT_BEFORE_ADD, true);
     }
 
 
