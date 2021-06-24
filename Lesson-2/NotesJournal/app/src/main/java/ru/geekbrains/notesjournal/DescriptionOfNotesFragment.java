@@ -1,5 +1,7 @@
 package ru.geekbrains.notesjournal;
 
+import android.content.Context;
+import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,6 +28,7 @@ public class DescriptionOfNotesFragment extends Fragment {
     // Фабричный метод создания фрагмента
     // Фрагменты рекомендуется создавать через фабричные методы.
     // newInstance - метод который умеет создавать объект. Этот метод на на входе получает параметр  индекс элемента массива
+
 
 
     public static DescriptionOfNotesFragment newInstance(NoteData noteData) {

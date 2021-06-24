@@ -10,6 +10,19 @@
     <string name="main">main</string>
     <string name="favorite">favorite</string>
     <string name="search">search</string>
+    <string name="use_backstack">use_backstack</string>
+    <string name="new_fragment">New fragment:</string>
+    <string name="add">add</string>
+    <string name="replace">replace</string>
+    <string name="back_as_remove_fragment">Back as remove fragment</string>
+    <string name="delete_before_add">Delete before add</string>
+    <string name="main_screen">main_screen</string>
+    <string name="favorite_screen">favorite_screen</string>
+    <string name="back">back</string>
+    <string name="item1">item1</string>
+    <string name="item2">item2</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 
 
 </resources>

@@ -1,26 +1,30 @@
 package ru.geekbrains.notesjournal;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Date;
 
 
-public class JournalFragment extends Fragment {
+public class MainFragment extends Fragment {
 
     public static final String CURRENT_NOTE = "CurrentNote";
     private NoteData currentNote; // Текущая позиция (выбранная заметка)
@@ -28,14 +32,44 @@ public class JournalFragment extends Fragment {
 
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_journal, container, false);
+    public void onAttach(@NonNull Context context) {
+
+        super.onAttach(context);
+
+        Configuration configuration = getResources().getConfiguration();
+        isLandscape=configuration.orientation==Configuration.ORIENTATION_LANDSCAPE;
+
+    }
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+       View view =  inflater.inflate(R.layout.fragment_main, container, false);
+       setHasOptionsMenu(true);
+        return view;
     }
 
     // Обратите внимание, что в ниже приведенном  методе onViewCreated() вызывается метод initList(), в котором
     //создаётся список динамических элементов из массива строк, описанного в ресурсах.
     // вызывается после создания макета фрагмента, здесь мы проинициализируем список
+
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        inflater.inflate(R.menu.main_fragment, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        if (item.getItemId() == R.id.action_add){
+            Toast.makeText(getContext(), "Chosen add",
+                    Toast.LENGTH_SHORT).show();
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+
 
 
     // Ниже инициилизируем список:
@@ -74,14 +108,6 @@ public class JournalFragment extends Fragment {
 
 
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-
-        isLandscape = getResources().getConfiguration().orientation == Configuration.ORIENTATION_LANDSCAPE;
-
-    }
-
-    @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         outState.putParcelable(CURRENT_NOTE, currentNote);
         super.onSaveInstanceState(outState);
@@ -116,7 +142,6 @@ public class JournalFragment extends Fragment {
 
         FragmentManager fragmentManager = requireActivity().getSupportFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fl_describe_note_container, detail);
         fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
         fragmentTransaction.commit();
 
