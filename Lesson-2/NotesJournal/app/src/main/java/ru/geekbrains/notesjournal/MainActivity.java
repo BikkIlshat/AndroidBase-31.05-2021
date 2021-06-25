@@ -33,9 +33,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         initView();
-
-        Fragment fragment = NotesJournalFragment.newInstance();
-        addFragment(fragment);
+        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.list_of_notes_fragment_container, new NotesJournalFragment());
+        fragmentTransaction.commit();
+//        Fragment fragment = NotesJournalFragment.newInstance();
+//        addFragment(fragment);
 
     }
 
@@ -127,19 +129,19 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void addFragment(Fragment fragment){
-//Получить менеджер фрагментов
-        FragmentManager fragmentManager = getSupportFragmentManager();
-// Открыть транзакцию
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-// Удалить видимый фрагмент
-        fragmentTransaction.replace(R.id.fragment_container, fragment);
-        fragmentTransaction.addToBackStack(null);
-
-
-        // Закрыть транзакцию
-        fragmentTransaction.commit();
-    }
+//    private void addFragment(Fragment fragment){
+////Получить менеджер фрагментов
+//        FragmentManager fragmentManager = getSupportFragmentManager();
+//// Открыть транзакцию
+//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//// Удалить видимый фрагмент
+//        fragmentTransaction.replace(R.id.fragment_container, fragment);
+//        fragmentTransaction.addToBackStack(null);
+//
+//
+//        // Закрыть транзакцию
+//        fragmentTransaction.commit();
+//    }
 
 
     }

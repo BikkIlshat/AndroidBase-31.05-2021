@@ -9,10 +9,13 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.Objects;
 
 import ru.geekbrains.notesjournal.R;
 
@@ -25,14 +28,14 @@ public class NotesJournalFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
 
-        View view = inflater.inflate(R.layout.fragment_main, container, false);
-        RecyclerView recyclerView = view.findViewById(R.id.recycler_view_lines);
+        View view = inflater.inflate(R.layout.notes_journal_fragment, container, false);
+        RecyclerView recyclerView = view.findViewById(R.id.notes_recycler_view);
         String[] data = getResources().getStringArray(R.array.notes);
         initRecyclerView(recyclerView, data);
         return view;
     }
 
-    private void initRecyclerView(RecyclerView recyclerView, String[] data){
+    private void initRecyclerView(RecyclerView recyclerView, String[] data) {
 
         // Эта установка служит для повышения производительности системы
         recyclerView.setHasFixedSize(true);
@@ -46,16 +49,26 @@ public class NotesJournalFragment extends Fragment {
         recyclerView.setAdapter(adapter);
         // Установим слушателя
 
-        adapter.SetOnItemClickListener(new NotesJournalAdapter.OnItemClickListener() {
-            @SuppressLint("DefaultLocale")
-            @Override
-            public void onItemClick(View view, int position) {
-                Toast.makeText(getContext(), String.format("%s - %d", ((TextView)view).getText(), position), Toast.LENGTH_SHORT).show();
 
-            }
+        adapter.SetOnItemClickListener((view, position) -> {
+
+
         });
 
 
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(requireContext(),
+                LinearLayoutManager.VERTICAL);
+        itemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.separator)));
+        recyclerView.addItemDecoration(itemDecoration);
     }
+
+
+
+
+
+
+
+
+
 
 }

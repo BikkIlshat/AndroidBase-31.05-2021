@@ -1,36 +1,34 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/note_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    tools:context=".DescriptionOfNotesFragment">
+    android:orientation="vertical">
 
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/textView_name"
+    <TextView
+        android:id="@+id/note_date_of_creation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        tools:text="Наименование"
-        android:inputType="text"
-        android:layout_marginTop="@dimen/layout_marginTop"/>
+        android:layout_marginTop="22dp"
+        android:textAlignment="center" />
 
-
-
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/textView_date"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/note_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        tools:text="Дата создания"/>
+        android:layout_marginTop="22dp"
+        android:gravity="center"
+        android:hint="@string/note_title"
+        android:textSize="22sp" />
 
-    <androidx.appcompat.widget.AppCompatEditText
-        android:id="@+id/textView_describe"
+    <com.google.android.material.textfield.TextInputEditText
+        android:id="@+id/note_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textSize="18sp"
-        tools:text="Описание"
-        android:inputType="text"/>
+        android:layout_marginTop="22dp"
+        android:gravity="center"
+        android:textSize="22sp"
+        tools:text="@string/note_content" />
 
 </LinearLayout>

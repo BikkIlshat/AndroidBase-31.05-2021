@@ -23,6 +23,11 @@
     <string name="item2">item2</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="note_title">note_title</string>
+    <string name="note_content">note_content</string>
+    <string name="Title">Title</string>
+    <string name="Item_top">Item_top</string>
+    <string name="item_end">item_end</string>
 
 
 </resources>
