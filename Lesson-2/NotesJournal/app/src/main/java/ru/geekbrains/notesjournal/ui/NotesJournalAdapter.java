@@ -12,7 +12,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.text.SimpleDateFormat;
 import java.util.Locale;
 
-import ru.geekbrains.notesjournal.NoteData;
 import ru.geekbrains.notesjournal.R;
 
 public class NotesJournalAdapter extends RecyclerView.Adapter<NotesJournalAdapter.ViewHolder> {
@@ -33,8 +32,7 @@ public class NotesJournalAdapter extends RecyclerView.Adapter<NotesJournalAdapte
     @NonNull
     @Override
     public NotesJournalAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
-    // Создаём новый элемент пользовательского интерфейса
-    // Через Inflater
+    // Создаём новый элемент пользовательского интерфейса Через Inflater
         View v = LayoutInflater.from(viewGroup.getContext()).inflate(R.layout.item, viewGroup, false);
     // Здесь можно установить всякие параметры
         return new ViewHolder(v); // возвращает новый ViewHolder с параметрами (v) которые только-что создали выше
@@ -49,7 +47,7 @@ public class NotesJournalAdapter extends RecyclerView.Adapter<NotesJournalAdapte
     public void onBindViewHolder(@NonNull ViewHolder viewHolder, int position) {
     // Получить элемент из источника данных (БД, интернет...)
     // Вынести на экран, используя ViewHolder
-        //viewHolder.getTextView().setText(dataSource[i]);
+
         viewHolder.getTitleTextView().setText(dataSource[position]);
         viewHolder.getDateTextView().setText(dataSource[position]);
         SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy", Locale.getDefault());
@@ -100,9 +98,7 @@ public class NotesJournalAdapter extends RecyclerView.Adapter<NotesJournalAdapte
         }
 
 
-//        public TextView getTextView() {
-//            return textView;
-//        }
+
 
 
         public LinearLayout getItemLayout() {

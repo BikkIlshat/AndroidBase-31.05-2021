@@ -12,7 +12,8 @@
     <string name="search">search</string>
     <string name="use_backstack">use_backstack</string>
     <string name="new_fragment">New fragment:</string>
-    <string name="add">add</string>
+    <string name="add">Добавить</string>
+    <string name="clear">Очистить</string>
     <string name="replace">replace</string>
     <string name="back_as_remove_fragment">Back as remove fragment</string>
     <string name="delete_before_add">Delete before add</string>
@@ -23,11 +24,35 @@
     <string name="item2">item2</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
-    <string name="note_title">note_title</string>
-    <string name="note_content">note_content</string>
+    <string name="note_title">Заголовок</string>
+    <string name="note_content">Описание</string>
     <string name="Title">Title</string>
     <string name="Item_top">Item_top</string>
     <string name="item_end">item_end</string>
+
+    <string name="description1">Описание заметки:</string>
+    <string name="description2">Описание заметки:</string>
+    <string name="description3">Описание заметки:</string>
+    <string name="description4">Описание заметки:</string>
+    <string name="description5">Описание заметки:</string>
+    <string name="description6">Описание заметки:</string>
+    <string name="description7">Описание заметки:</string>
+    <string name="description8">Описание заметки:</string>
+    <string name="description9">Описание заметки:</string>
+    <string name="description10">Описание заметки:</string>
+    <string name="description11">Описание заметки:</string>
+    <string name="description12">Описание заметки:</string>
+    <string name="description13">Описание заметки:</string>
+    <string name="description14">Описание заметки:</string>
+    <string name="description15">Описание заметки:</string>
+    <string name="description16">Описание заметки:</string>
+    <string name="description17">Описание заметки:</string>
+    <string name="description18">Описание заметки:</string>
+    <string name="description19">Описание заметки:</string>
+    <string name="description20">Описание заметки:</string>
+    <string name="description21">Описание заметки:</string>
+    <string name="description22">Описание заметки:</string>
+    <string name="Description" />
 
 
 </resources>

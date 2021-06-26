@@ -24,6 +24,30 @@
         <item>Заметка_22</item>
     </string-array>
 
+    <string-array name="descriptions">
+        <item>@string/description1</item>
+        <item>@string/description2</item>
+        <item>@string/description3</item>
+        <item>@string/description4</item>
+        <item>@string/description5</item>
+        <item>@string/description6</item>
+        <item>@string/description7</item>
+        <item>@string/description8</item>
+        <item>@string/description9</item>
+        <item>@string/description10</item>
+        <item>@string/description11</item>
+        <item>@string/description12</item>
+        <item>@string/description13</item>
+        <item>@string/description14</item>
+        <item>@string/description15</item>
+        <item>@string/description16</item>
+        <item>@string/description17</item>
+        <item>@string/description18</item>
+        <item>@string/description19</item>
+        <item>@string/description20</item>
+        <item>@string/description21</item>
+        <item>@string/description22</item>
+    </string-array>
 
     <array name="colors">
         <item>@color/navajo_white</item>

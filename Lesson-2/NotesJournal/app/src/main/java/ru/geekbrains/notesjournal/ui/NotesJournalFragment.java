@@ -1,13 +1,10 @@
 package ru.geekbrains.notesjournal.ui;
 
 
-import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
@@ -30,6 +27,7 @@ public class NotesJournalFragment extends Fragment {
 
         View view = inflater.inflate(R.layout.notes_journal_fragment, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.notes_recycler_view);
+
         String[] data = getResources().getStringArray(R.array.notes);
         initRecyclerView(recyclerView, data);
         return view;
@@ -50,16 +48,17 @@ public class NotesJournalFragment extends Fragment {
         // Установим слушателя
 
 
+        DividerItemDecoration itemDecoration = new DividerItemDecoration(requireContext(),
+                LinearLayoutManager.VERTICAL);
+        itemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.separator)));
+        recyclerView.addItemDecoration(itemDecoration);
+
         adapter.SetOnItemClickListener((view, position) -> {
 
 
         });
 
 
-        DividerItemDecoration itemDecoration = new DividerItemDecoration(requireContext(),
-                LinearLayoutManager.VERTICAL);
-        itemDecoration.setDrawable(Objects.requireNonNull(ContextCompat.getDrawable(getContext(), R.drawable.separator)));
-        recyclerView.addItemDecoration(itemDecoration);
     }
 
 
