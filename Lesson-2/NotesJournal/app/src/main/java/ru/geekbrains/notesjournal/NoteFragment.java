@@ -1,17 +1,12 @@
 package ru.geekbrains.notesjournal;
 
 import android.content.Context;
-import android.content.res.Configuration;
 import android.os.Bundle;
+import android.text.Editable;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.DatePicker;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -19,20 +14,24 @@ import androidx.fragment.app.Fragment;
 
 import com.google.android.material.textfield.TextInputEditText;
 
-import ru.geekbrains.notesjournal.observer.Publisher;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.Calendar;
+import java.util.Date;
+
 import ru.geekbrains.notesjournal.data.NoteData;
+import ru.geekbrains.notesjournal.observer.Publisher;
 
 public class NoteFragment extends Fragment {
 
     public static final String CURRENT_NOTE = "CurrentNote";
+
     private NoteData noteData;
     private Publisher publisher;
-
     private TextInputEditText title;
     private TextInputEditText description;
     private DatePicker datePicker;
-
-    private boolean isLandscape;
+//    private boolean isLandscape;
 
 
 
@@ -65,69 +64,80 @@ public class NoteFragment extends Fragment {
         MainActivity activity = (MainActivity)context;
         publisher = activity.getPublisher();
 
-
-        Configuration configuration = getResources().getConfiguration();
-        isLandscape=configuration.orientation == Configuration.ORIENTATION_LANDSCAPE;
+//        Configuration configuration = getResources().getConfiguration();
+//        isLandscape=configuration.orientation == Configuration.ORIENTATION_LANDSCAPE;
 
     }
 
 
+    @Nullable
+    @org.jetbrains.annotations.Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-       View view =  inflater.inflate(R.layout.fragment_description_of_notes, container, false);
-        TextInputEditText titleText = view.findViewById(R.id.note_title);
-        TextInputEditText contentText = view.findViewById(R.id.note_content);
-        TextView dateOfCreationText = view.findViewById(R.id.title);
-//        SimpleDateFormat formatter = new SimpleDateFormat("HH:mm:ss dd-MM-yyyy", Locale.getDefault());
-//        dateOfCreationText.setText(String.format("%s: %s", "Created", formatter.format(noteData.getCreationDate().getTime())));
-//        titleText.setText(noteData.getTitle());
-//        contentText.setText(noteData.getContent());
-        setHasOptionsMenu(true);
+    public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_description_of_notes, container, false);
+        initView(view);
+
+
+        if (noteData != null) {
+            populateView();
+        }
+
         return view;
     }
 
-    // Обратите внимание, что в ниже приведенном  методе onViewCreated() вызывается метод initList(), в котором
-    //создаётся список динамических элементов из массива строк, описанного в ресурсах.
-    // вызывается после создания макета фрагмента, здесь мы проинициализируем список
-
-
-
     @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.main_fragment, menu);
+    public void onStop() {
+        super.onStop();
+        noteData = collectNoteData();
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.action_add){
-            Toast.makeText(getContext(), "Chosen add",
-                    Toast.LENGTH_SHORT).show();
-            return true;
-        }
-        return super.onOptionsItemSelected(item);
+    public void onDestroy() {
+        super.onDestroy();
+        publisher.notifySingle(noteData);
     }
 
 
+    private NoteData collectNoteData(){
+        Editable titleRaw = this.title.getText();
+        String title = titleRaw == null ? "" : titleRaw.toString();
 
+        Editable descriptionRaw = this.description.getText();
+        String description = descriptionRaw == null ? "" : descriptionRaw.toString();
 
-    // Ниже инициилизируем список:
-    @Override // когда создали  метод  public View onCreateView - этот  же самый View прилетает в параметы нижеприведенного метода  (@NonNull View view, @Nullable Bundle savedInstanceState)
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState); // Обязательно вызываем какую-нибудь передыдущую функцию. (onViewCreated - это базовая функция)
-    // что бы проинициилизировать список создаём последовательность:
+        Date date = getDateFromDatePicker();
 
+        return new NoteData(title, description, date);
     }
 
+    private Date getDateFromDatePicker() {
+        Calendar cal = Calendar.getInstance();
+        cal.set(Calendar.YEAR, this.datePicker.getYear());
+        cal.set(Calendar.MONTH, this.datePicker.getMonth());
+        cal.set(Calendar.DAY_OF_MONTH, this.datePicker.getDayOfMonth());
+        return cal.getTime();
+    }
 
+    private void populateView() {
+        title.setText(noteData.getTitle());
+        description.setText(noteData.getDescription());
+        initDatePicker(noteData.getDate());
+    }
 
+    private void initView(View view) {
+        title = view.findViewById(R.id.note_title);
+        description = view.findViewById(R.id.note_content);
+        datePicker = view.findViewById(R.id.inputDate);
+    }
 
-//    @Override
-//    public void onSaveInstanceState(@NonNull Bundle outState) {
-//        outState.putParcelable(CURRENT_NOTE, noteData);
-//        super.onSaveInstanceState(outState);
-//    }
-
-
+    private void initDatePicker(Date date) {
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTime(date);
+        this.datePicker.init(calendar.get(Calendar.YEAR),
+                calendar.get(Calendar.MONTH),
+                calendar.get(Calendar.DAY_OF_MONTH),
+                null);
+    }
 
 
 

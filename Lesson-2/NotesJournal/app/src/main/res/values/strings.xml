@@ -30,29 +30,28 @@
     <string name="Item_top">Item_top</string>
     <string name="item_end">item_end</string>
 
-    <string name="description1">Описание заметки:</string>
-    <string name="description2">Описание заметки:</string>
-    <string name="description3">Описание заметки:</string>
-    <string name="description4">Описание заметки:</string>
-    <string name="description5">Описание заметки:</string>
-    <string name="description6">Описание заметки:</string>
-    <string name="description7">Описание заметки:</string>
-    <string name="description8">Описание заметки:</string>
-    <string name="description9">Описание заметки:</string>
-    <string name="description10">Описание заметки:</string>
-    <string name="description11">Описание заметки:</string>
-    <string name="description12">Описание заметки:</string>
-    <string name="description13">Описание заметки:</string>
-    <string name="description14">Описание заметки:</string>
-    <string name="description15">Описание заметки:</string>
-    <string name="description16">Описание заметки:</string>
-    <string name="description17">Описание заметки:</string>
-    <string name="description18">Описание заметки:</string>
-    <string name="description19">Описание заметки:</string>
-    <string name="description20">Описание заметки:</string>
-    <string name="description21">Описание заметки:</string>
-    <string name="description22">Описание заметки:</string>
-    <string name="Description" />
+    <string name="description1">Описание</string>
+    <string name="description2">Описание</string>
+    <string name="description3">Описание</string>
+    <string name="description4">Описание</string>
+    <string name="description5">Описание</string>
+    <string name="description6">Описание</string>
+    <string name="description7">Описание</string>
+    <string name="description8">Описание</string>
+    <string name="description9">Описание</string>
+    <string name="description10">Описание</string>
+    <string name="description11">Описание</string>
+    <string name="description12">Описание</string>
+    <string name="description13">Описание</string>
+    <string name="description14">Описание</string>
+    <string name="description15">Описание</string>
+    <string name="description16">Описание</string>
+    <string name="description17">Описание</string>
+
+
+
+    <string name="update">Изменить</string>
+    <string name="delete">Удалить</string>
 
 
 </resources>

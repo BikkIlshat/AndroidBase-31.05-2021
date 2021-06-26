@@ -2,11 +2,11 @@ package ru.geekbrains.notesjournal.data;
 
 public interface NoteSource {
 
-    NoteData getCardData(int position);
+    NoteData getNoteData(int position);
     int getSize();
     void deleteNoteData(int position);
     void updateNoteData(int position, NoteData noteData);
-    void addCardData(NoteData noteData);
+    void addNoteData(NoteData noteData);
     void clearNoteData();
 
 }

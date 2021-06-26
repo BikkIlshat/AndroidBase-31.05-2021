@@ -20,8 +20,8 @@
         <item>Заметка_18</item>
         <item>Заметка_19</item>
         <item>Заметка_20</item>
-        <item>Заметка_21</item>
-        <item>Заметка_22</item>
+
+
     </string-array>
 
     <string-array name="descriptions">
@@ -42,11 +42,6 @@
         <item>@string/description15</item>
         <item>@string/description16</item>
         <item>@string/description17</item>
-        <item>@string/description18</item>
-        <item>@string/description19</item>
-        <item>@string/description20</item>
-        <item>@string/description21</item>
-        <item>@string/description22</item>
     </string-array>
 
     <array name="colors">

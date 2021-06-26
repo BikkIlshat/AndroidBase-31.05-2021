@@ -15,7 +15,7 @@ public class NoteDataSourceImpl implements  NoteSource {
 
     public NoteDataSourceImpl(Resources resources) {
         this.resources = resources;
-        noteDataSource = new ArrayList<>(7);
+        noteDataSource = new ArrayList<>(30);
     }
 
 
@@ -25,14 +25,14 @@ public class NoteDataSourceImpl implements  NoteSource {
 
 
         for(int i = 0; i < descriptions.length; i++){
-            noteDataSource.add(new NoteData(titles[i], descriptions[i], Calendar.getInstance().getTime()));
+            noteDataSource.add(new NoteData(titles[i], descriptions[i],  Calendar.getInstance().getTime()));
         }
 
         return this;
     }
 
     @Override
-    public NoteData getCardData(int position) {
+    public NoteData getNoteData(int position) {
         return null;
     }
 
@@ -52,7 +52,7 @@ public class NoteDataSourceImpl implements  NoteSource {
     }
 
     @Override
-    public void addCardData(NoteData noteData) {
+    public void addNoteData(NoteData noteData) {
 
     }
 

@@ -13,7 +13,7 @@ public class Navigation {
     }
 
 
-    void addFragment(Fragment fragment, boolean useBackStack){
+    public void addFragment(Fragment fragment, boolean useBackStack){
 
 
 // Открыть транзакцию
