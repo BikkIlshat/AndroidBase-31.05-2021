@@ -5,4 +5,12 @@
     <dimen name="nav_header_height">200dp</dimen>
     <dimen name="nav_header_dimen">42sp</dimen>
     <dimen name="layout_marginTop">48dp</dimen>
+    <dimen name="sizeItemList">32sp</dimen>
+    <dimen name="card_corner_radius">15dp</dimen>
+    <dimen name="card_elevation">3dp</dimen>
+    <dimen name="title_top">25sp</dimen>
+    <dimen name="title_end">18sp</dimen>
+    <dimen name="paddingItem">10dp</dimen>
+    <dimen name="paddingItemBottom">5dp</dimen>
+    <dimen name="TitleItemList">25sp</dimen>
 </resources>

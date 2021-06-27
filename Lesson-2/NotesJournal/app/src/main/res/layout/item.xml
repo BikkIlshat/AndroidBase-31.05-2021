@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:cardCornerRadius="@dimen/card_corner_radius"
+    app:cardElevation="@dimen/card_elevation">
+
+    <LinearLayout
+        android:id="@+id/element_of_recycler_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:textSize="@dimen/TitleItemList"
+        tools:text="@string/Title">
+
+        <TextView
+            android:id="@+id/first_tv_of_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/paddingItem"
+            android:paddingEnd="@dimen/paddingItem"
+            android:textSize="@dimen/title_top"
+            tools:text="@string/Item_top" />
+
+        <TextView
+            android:id="@+id/second_tv_of_item"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/paddingItem"
+            android:paddingEnd="@dimen/paddingItem"
+            android:paddingBottom="@dimen/paddingItemBottom"
+            android:textSize="@dimen/title_end"
+            tools:text="@string/item_end" />
+    </LinearLayout>
+</androidx.cardview.widget.CardView>

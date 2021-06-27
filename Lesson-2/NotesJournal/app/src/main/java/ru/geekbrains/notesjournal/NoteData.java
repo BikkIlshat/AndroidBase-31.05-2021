@@ -5,20 +5,11 @@ import android.os.Parcelable;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 public class NoteData implements Parcelable {
-    private final String name;
-    private final String describe;
-    private final Date date;
-
-
-    public NoteData(String name, String describe, Date date) {
-        this.name = name;
-        this.describe = describe;
-        this.date = date;
-    }
 
     public static final Creator<NoteData> CREATOR = new Creator<NoteData>() {
         @Override
@@ -32,12 +23,30 @@ public class NoteData implements Parcelable {
         }
     };
 
-    public String getName() {
-        return name;
+
+    private String title;
+    private String content;
+    private Calendar creationDate;
+    private Date date;
+
+    public NoteData(String title, String content, Calendar creationDate, Date date) {
+        this.title = title;
+        this.content = content;
+        this.creationDate = creationDate;
+        this.date = date;
     }
 
-    public String getDescribe() {
-        return describe;
+
+    public String getTitle() {
+        return title;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public Calendar getCreationDate() {
+        return creationDate;
     }
 
     public Date getDate() {
@@ -45,10 +54,25 @@ public class NoteData implements Parcelable {
     }
 
     protected NoteData(Parcel in) {
-        name = in.readString();
-        describe = in.readString();
+        title = in.readString();
+        content = in.readString();
+        creationDate = (Calendar) in.readSerializable();
         date = stringToDate(in.readString());
     }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(title);
+        dest.writeString(content);
+        dest.writeSerializable(creationDate);
+
+    }
+
 
     private Date stringToDate(String text) {
         SimpleDateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy", Locale.getDefault());
@@ -61,16 +85,5 @@ public class NoteData implements Parcelable {
         }
 
         return date;
-    }
-
-    @Override
-    public int describeContents() {
-        return 0;
-    }
-
-    @Override
-    public void writeToParcel(Parcel dest, int flags) {
-        dest.writeString(name);
-        dest.writeString(describe);
     }
 }
