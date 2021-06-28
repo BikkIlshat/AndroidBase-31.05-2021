@@ -10,7 +10,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -84,7 +83,7 @@ public class NotesJournalFragment extends Fragment {
 
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        inflater.inflate(R.menu.main_fragment, menu);
+        inflater.inflate(R.menu.contex_menu, menu);
     }
 
 
@@ -116,7 +115,7 @@ public class NotesJournalFragment extends Fragment {
     public void onCreateContextMenu(@NonNull @NotNull ContextMenu menu, @NonNull @NotNull View v, @Nullable @org.jetbrains.annotations.Nullable ContextMenu.ContextMenuInfo menuInfo) {
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = requireActivity().getMenuInflater();
-        inflater.inflate(R.menu.main, menu);
+        inflater.inflate(R.menu.contnex_menu_2, menu);
     }
 
 
@@ -136,6 +135,11 @@ public class NotesJournalFragment extends Fragment {
                 data.deleteNoteData(position);
                 adapter.notifyItemRemoved(position);
                 return true;
+            case R.id.action_clear:
+                data.clearNoteData();
+                adapter.notifyDataSetChanged();
+                return true;
+
         }
         return super.onContextItemSelected(item);
     }
@@ -149,6 +153,15 @@ public class NotesJournalFragment extends Fragment {
         recyclerView.setLayoutManager(layoutManager);
 
         adapter = new NotesJournalAdapter(data, this);
+        adapter.setOnItemClickListener((view1, position) -> {
+            navigation.addFragment(NoteFragment.newInstance(data.getNoteData(position)),
+                    true);
+            publisher.subscribe(note1 -> {
+               data.clearNoteData();
+                adapter.notifyItemChanged(position);
+            });
+        });
+
         recyclerView.setAdapter(adapter);
 
         DividerItemDecoration itemDecoration = new DividerItemDecoration(getContext(),
@@ -162,8 +175,9 @@ public class NotesJournalFragment extends Fragment {
         animator.setRemoveDuration(MY_DEFAULT_DURATION);
         recyclerView.setItemAnimator(animator);
 
-        adapter.setOnItemClickListener((view1, position) ->
-               Toast.makeText(NotesJournalFragment.this.getContext(), String.format("Позиция - %d", position), Toast.LENGTH_SHORT).show());
+
+
+
     }
 
 

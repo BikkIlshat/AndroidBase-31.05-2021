@@ -131,6 +131,7 @@ public class NoteFragment extends Fragment {
         datePicker = view.findViewById(R.id.inputDate);
     }
 
+
     private void initDatePicker(Date date) {
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
