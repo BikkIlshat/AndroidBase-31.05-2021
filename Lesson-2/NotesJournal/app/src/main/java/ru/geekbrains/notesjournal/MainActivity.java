@@ -30,12 +30,9 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         navigation = new Navigation(getSupportFragmentManager());
         initView();
-
-//        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-//        fragmentTransaction.replace(R.id.list_of_notes_fragment_container, new NotesJournalFragment());
         Fragment fragment = NotesJournalFragment.newInstance();
         getNavigation().addFragment(fragment, false);
-//        fragmentTransaction.commit();
+
 
     }
 

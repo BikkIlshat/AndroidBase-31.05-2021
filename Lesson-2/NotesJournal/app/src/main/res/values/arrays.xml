@@ -20,8 +20,6 @@
         <item>Заметка_18</item>
         <item>Заметка_19</item>
         <item>Заметка_20</item>
-
-
     </string-array>
 
     <string-array name="descriptions">
@@ -44,18 +42,5 @@
         <item>@string/description17</item>
     </string-array>
 
-    <array name="colors">
-        <item>@color/navajo_white</item>
-        <item>@color/hot_pink</item>
-        <item>@color/plum</item>
-        <item>@color/powder_blue</item>
-        <item>@color/yellow_green</item>
-        <item>@color/peru</item>
-        <item>@color/pale_green</item>
-        <item>@color/light_sky_blue</item>
-        <item>@color/dark_salmon</item>
-        <item>@color/olive</item>
-        <item>@color/medium_slate_blue</item>
-        <item>@color/dark_turquoise</item>
-    </array>
+
 </resources>

@@ -5,9 +5,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -19,7 +21,7 @@ import ru.geekbrains.notesjournal.data.NoteSource;
 
 public class NotesJournalAdapter extends RecyclerView.Adapter<NotesJournalAdapter.ViewHolder> {
 
-    private final static String TAG = "SocialNetwork";
+    private final static String TAG = "NoteData";
     private final NoteSource dataSource;
     private final Fragment fragment;
     private OnItemClickListener itemClickListener;// Слушатель будетустанавливаться извне
@@ -41,7 +43,8 @@ public class NotesJournalAdapter extends RecyclerView.Adapter<NotesJournalAdapte
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         // Создаём новый элемент пользовательского интерфейса Через Inflater
-        View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.item, parent, false);
         // Здесь можно установить всякие параметры
         Log.d(TAG, "onCreateViewHolder");
         return new ViewHolder(v);// возвращает новый ViewHolder с параметрами (v) которые только-что создали выше
@@ -51,10 +54,8 @@ public class NotesJournalAdapter extends RecyclerView.Adapter<NotesJournalAdapte
     // Заменить данные в пользовательском интерфейсе
     // Вызывается менеджером
     @Override
-    public void onBindViewHolder(@NonNull NotesJournalAdapter.ViewHolder holder, int position) {
-        // Получить элемент из источника данных (БД, интернет...)
-        // Вынести на экран, используя ViewHolder
-
+    public void onBindViewHolder(@NonNull NotesJournalAdapter.ViewHolder holder,
+                                 int position) {
         holder.setData(dataSource.getNoteData(position));
         Log.d(TAG, String.format("onBindViewHolder - %d", position));
     }
@@ -87,57 +88,52 @@ public class NotesJournalAdapter extends RecyclerView.Adapter<NotesJournalAdapte
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
-        private TextView title;
-        private TextView description;
+        private CardView cardView;
+        private LinearLayout itemLayout;
+        private TextView titleTextView;
+        private TextView dateTextView;
         private TextView date;
 
         public ViewHolder(@NonNull final View itemView) {
             super(itemView);
-
-            title = itemView.findViewById(R.id.title);
-            description = itemView.findViewById(R.id.note_content);
+            cardView = (CardView) itemView;
+            itemLayout = itemView.findViewById(R.id.element_of_recycler_view);
+            titleTextView = itemView.findViewById(R.id.first_tv_of_item);
+            dateTextView = itemView.findViewById(R.id.second_tv_of_item);
             date = itemView.findViewById(R.id.date);
 
             registerContextMenu(itemView);
 
-    // Обработчик нажатий на этом ViewHolder
-            title.setOnLongClickListener(new View.OnLongClickListener() {
-                @Override
-                public boolean onLongClick(View v) {
-                    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                        menuPosition = ViewHolder.this.getLayoutPosition();
-                        itemView.showContextMenu(10, 10);
-                    }
-                    return true;
+
+            itemLayout.setOnLongClickListener(v -> {
+                if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                    menuPosition = ViewHolder.this.getLayoutPosition();
+                    itemView.showContextMenu(10, 10);
                 }
+                return true;
             });
 
-            title.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (itemClickListener != null) {
-                        itemClickListener.onItemClick(v, ViewHolder.this.getAdapterPosition());
-                    }
+            itemLayout.setOnClickListener(v -> {
+                if (itemClickListener != null) {
+                    itemClickListener.onItemClick(v, ViewHolder.this.getAdapterPosition());
                 }
             });
         }
 
         private void registerContextMenu(View itemView) {
             if (fragment != null) {
-                itemView.setOnLongClickListener(new View.OnLongClickListener() {
-                    @Override
-                    public boolean onLongClick(View v) {
-                        menuPosition = ViewHolder.this.getLayoutPosition();
-                        return false;
-                    }
+                itemView.setOnLongClickListener(v -> {
+                    menuPosition = ViewHolder.this.getLayoutPosition();
+                    return false;
                 });
                 fragment.registerForContextMenu(itemView);
             }
         }
+
         public void setData(NoteData data){
-            title.setText(data.getTitle());
-            description.setText(data.getDescription());
-            date.setText(new SimpleDateFormat("dd-MM-yy").format(data.getDate()));
+            titleTextView.setText(data.getTitle());
+            dateTextView.setText(data.getDescription());
+           date.setText(new SimpleDateFormat("dd-MM-yy").format(data.getDate()));
         }
     }
 }

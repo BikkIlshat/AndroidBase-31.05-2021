@@ -28,14 +28,13 @@ import ru.geekbrains.notesjournal.NoteFragment;
 import ru.geekbrains.notesjournal.R;
 import ru.geekbrains.notesjournal.data.NoteData;
 import ru.geekbrains.notesjournal.data.NoteDataSourceImpl;
-import ru.geekbrains.notesjournal.data.NoteSource;
 import ru.geekbrains.notesjournal.observer.Observer;
 import ru.geekbrains.notesjournal.observer.Publisher;
 
 public class NotesJournalFragment extends Fragment {
 
     private static final int MY_DEFAULT_DURATION = 1000;
-    private NoteSource data;
+    private NoteDataSourceImpl data;
     private NotesJournalAdapter adapter;
     private RecyclerView recyclerView;
     private Navigation navigation;
@@ -50,13 +49,16 @@ public class NotesJournalFragment extends Fragment {
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        data = new NoteDataSourceImpl(getResources()).init();
+        if (data == null) {
+            data = new NoteDataSourceImpl(getResources()).init();
+        }
     }
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.notes_journal_fragment, container, false);
+        setHasOptionsMenu(true);
         initRecyclerView(view);
         return view;
     }
@@ -125,13 +127,9 @@ public class NotesJournalFragment extends Fragment {
         switch(item.getItemId()){
             case R.id.action_update:
                 navigation.addFragment(NoteFragment.newInstance(data.getNoteData(position)), true);
-                publisher.subscribe(new Observer() {
-                    @Override
-                    public void updateNoteData(NoteData noteData) {
-                        data.updateNoteData(position, noteData);
-                        adapter.notifyItemChanged(position);
-                    }
-
+                publisher.subscribe(noteData -> {
+                    data.updateNoteData(position, noteData);
+                    adapter.notifyItemChanged(position);
                 });
                 return true;
             case R.id.action_delete:
@@ -165,7 +163,7 @@ public class NotesJournalFragment extends Fragment {
         recyclerView.setItemAnimator(animator);
 
         adapter.setOnItemClickListener((view1, position) ->
-                Toast.makeText(NotesJournalFragment.this.getContext(), String.format("Позиция - %d", position), Toast.LENGTH_SHORT).show());
+               Toast.makeText(NotesJournalFragment.this.getContext(), String.format("Позиция - %d", position), Toast.LENGTH_SHORT).show());
     }
 
 

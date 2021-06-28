@@ -31,7 +31,7 @@ public class NoteFragment extends Fragment {
     private TextInputEditText title;
     private TextInputEditText description;
     private DatePicker datePicker;
-//    private boolean isLandscape;
+
 
 
 
@@ -63,12 +63,14 @@ public class NoteFragment extends Fragment {
         super.onAttach(context);
         MainActivity activity = (MainActivity)context;
         publisher = activity.getPublisher();
-
-//        Configuration configuration = getResources().getConfiguration();
-//        isLandscape=configuration.orientation == Configuration.ORIENTATION_LANDSCAPE;
-
     }
 
+
+    @Override
+    public void onDetach() {
+        publisher = null;
+        super.onDetach();
+    }
 
     @Nullable
     @org.jetbrains.annotations.Nullable
@@ -76,7 +78,6 @@ public class NoteFragment extends Fragment {
     public View onCreateView(@NonNull @NotNull LayoutInflater inflater, @Nullable @org.jetbrains.annotations.Nullable ViewGroup container, @Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_description_of_notes, container, false);
         initView(view);
-
 
         if (noteData != null) {
             populateView();

@@ -15,7 +15,7 @@ public class NoteDataSourceImpl implements  NoteSource {
 
     public NoteDataSourceImpl(Resources resources) {
         this.resources = resources;
-        noteDataSource = new ArrayList<>(30);
+        noteDataSource = new ArrayList<>(20);
     }
 
 
@@ -23,41 +23,46 @@ public class NoteDataSourceImpl implements  NoteSource {
         String[] titles = resources.getStringArray(R.array.notes);
         String[] descriptions = resources.getStringArray(R.array.descriptions);
 
-
         for(int i = 0; i < descriptions.length; i++){
-            noteDataSource.add(new NoteData(titles[i], descriptions[i],  Calendar.getInstance().getTime()));
+            noteDataSource.add(new NoteData(titles[i], descriptions[i], Calendar.getInstance().getTime()));
         }
 
         return this;
     }
 
+
+
+
+
     @Override
     public NoteData getNoteData(int position) {
-        return null;
+        return noteDataSource.get(position);
     }
 
     @Override
     public int getSize() {
-        return 0;
+        return noteDataSource.size();
     }
 
     @Override
     public void deleteNoteData(int position) {
-
+        noteDataSource.remove(position);
     }
 
     @Override
     public void updateNoteData(int position, NoteData noteData) {
-
+        noteDataSource.set(position, noteData);
     }
 
     @Override
     public void addNoteData(NoteData noteData) {
-
+        noteDataSource.add(noteData);
     }
+
+
 
     @Override
     public void clearNoteData() {
-
+        noteDataSource.clear();
     }
 }

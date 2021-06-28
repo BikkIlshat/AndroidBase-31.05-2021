@@ -12,9 +12,9 @@ public class NoteData implements Parcelable {
     private Date date; // дата
 
 
-    public NoteData(String title, String content, Date date) {
+    public NoteData(String title, String description, Date date) {
         this.title = title;
-        this.description = content;
+        this.description = description;
         this.date = date;
     }
 
@@ -59,6 +59,11 @@ public class NoteData implements Parcelable {
     public String getDescription() {
         return description;
     }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
 
     public Date getDate() {
         return date;
