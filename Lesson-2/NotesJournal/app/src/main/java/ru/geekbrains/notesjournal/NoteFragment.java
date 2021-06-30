@@ -33,9 +33,6 @@ public class NoteFragment extends Fragment {
     private DatePicker datePicker;
 
 
-
-
-
     public static NoteFragment newInstance(NoteData noteData) {
         NoteFragment fragment = new NoteFragment();
         Bundle args = new Bundle();
@@ -48,7 +45,6 @@ public class NoteFragment extends Fragment {
         NoteFragment fragment = new NoteFragment();
         return fragment;
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -64,7 +60,6 @@ public class NoteFragment extends Fragment {
         MainActivity activity = (MainActivity)context;
         publisher = activity.getPublisher();
     }
-
 
     @Override
     public void onDetach() {
@@ -108,7 +103,16 @@ public class NoteFragment extends Fragment {
 
         Date date = getDateFromDatePicker();
 
-        return new NoteData(title, description, date);
+        NoteData answer;
+        if (noteData != null) {
+            answer = new NoteData(title, description, date);
+            answer.setId(noteData.getId());
+
+        } else {
+
+            answer = new NoteData(title,description,date);
+        }
+        return answer;
     }
 
     private Date getDateFromDatePicker() {
@@ -140,7 +144,4 @@ public class NoteFragment extends Fragment {
                 calendar.get(Calendar.DAY_OF_MONTH),
                 null);
     }
-
-
-
 }

@@ -7,9 +7,11 @@ import java.util.Date;
 
 public class NoteData implements Parcelable {
 
-    private String title; // заголовок
-    private String description; // описание
-    private Date date; // дата
+    private String id; // идентификатор
+    private String title;
+    private String description;
+    private Date date;
+
 
 
     public NoteData(String title, String description, Date date) {
@@ -21,14 +23,14 @@ public class NoteData implements Parcelable {
     protected NoteData(Parcel in) {
         title = in.readString();
         description = in.readString();
-        date = new Date(in.readLong()); // изменил
+        date = new Date(in.readLong());
     }
 
     @Override
     public void writeToParcel(Parcel dest, int flags) {
         dest.writeString(title);
         dest.writeString(description);
-        dest.writeLong(date.getTime()); // изменил
+        dest.writeLong(date.getTime());
 
     }
 
@@ -64,8 +66,16 @@ public class NoteData implements Parcelable {
         this.title = title;
     }
 
-
     public Date getDate() {
         return date;
+    }
+
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getId() {
+        return id;
     }
 }

@@ -26,14 +26,16 @@ import ru.geekbrains.notesjournal.Navigation;
 import ru.geekbrains.notesjournal.NoteFragment;
 import ru.geekbrains.notesjournal.R;
 import ru.geekbrains.notesjournal.data.NoteData;
-import ru.geekbrains.notesjournal.data.NoteDataSourceImpl;
+import ru.geekbrains.notesjournal.data.NoteSource;
+import ru.geekbrains.notesjournal.data.NoteSourceFirebaseImpl;
+import ru.geekbrains.notesjournal.data.NoteSourceResponse;
 import ru.geekbrains.notesjournal.observer.Observer;
 import ru.geekbrains.notesjournal.observer.Publisher;
 
 public class NotesJournalFragment extends Fragment {
 
     private static final int MY_DEFAULT_DURATION = 1000;
-    private NoteDataSourceImpl data;
+    private NoteSource data;
     private NotesJournalAdapter adapter;
     private RecyclerView recyclerView;
     private Navigation navigation;
@@ -46,19 +48,17 @@ public class NotesJournalFragment extends Fragment {
     }
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (data == null) {
-            data = new NoteDataSourceImpl(getResources()).init();
-        }
-    }
-
-
-    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.notes_journal_fragment, container, false);
         setHasOptionsMenu(true);
         initRecyclerView(view);
+        data = new NoteSourceFirebaseImpl().init(new NoteSourceResponse() {
+            @Override
+            public void initialized(NoteSource noteData) {
+                adapter.notifyDataSetChanged();
+            }
+        });
+        adapter.setDataSource(data);
         return view;
     }
 
@@ -88,6 +88,13 @@ public class NotesJournalFragment extends Fragment {
 
 
     @Override
+    public void onCreateContextMenu(@NonNull @NotNull ContextMenu menu, @NonNull @NotNull View v, @Nullable @org.jetbrains.annotations.Nullable ContextMenu.ContextMenuInfo menuInfo) {
+        super.onCreateContextMenu(menu, v, menuInfo);
+        MenuInflater inflater = requireActivity().getMenuInflater();
+        inflater.inflate(R.menu.contnex_menu_2, menu);
+    }
+
+    @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
             case R.id.action_add:
@@ -111,12 +118,6 @@ public class NotesJournalFragment extends Fragment {
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public void onCreateContextMenu(@NonNull @NotNull ContextMenu menu, @NonNull @NotNull View v, @Nullable @org.jetbrains.annotations.Nullable ContextMenu.ContextMenuInfo menuInfo) {
-        super.onCreateContextMenu(menu, v, menuInfo);
-        MenuInflater inflater = requireActivity().getMenuInflater();
-        inflater.inflate(R.menu.contnex_menu_2, menu);
-    }
 
 
 
@@ -144,6 +145,8 @@ public class NotesJournalFragment extends Fragment {
         return super.onContextItemSelected(item);
     }
 
+
+
     private void initRecyclerView(View view) {
         recyclerView = view.findViewById(R.id.notes_recycler_view);
 
@@ -152,7 +155,7 @@ public class NotesJournalFragment extends Fragment {
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
         recyclerView.setLayoutManager(layoutManager);
 
-        adapter = new NotesJournalAdapter(data, this);
+        adapter = new NotesJournalAdapter(this);
         adapter.setOnItemClickListener((view1, position) -> {
             navigation.addFragment(NoteFragment.newInstance(data.getNoteData(position)),
                     true);
@@ -175,11 +178,7 @@ public class NotesJournalFragment extends Fragment {
         animator.setRemoveDuration(MY_DEFAULT_DURATION);
         recyclerView.setItemAnimator(animator);
 
-
-
-
     }
-
 
 }
 
