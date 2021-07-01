@@ -155,7 +155,6 @@ public class NotesJournalFragment extends Fragment {
             navigation.addFragment(NoteFragment.newInstance(data.getNoteData(position)),
                     true);
             publisher.subscribe(note1 -> {
-//              data.clearNoteData();
               adapter.notifyItemChanged(position);
             });
         });
