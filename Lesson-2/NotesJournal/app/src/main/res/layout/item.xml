@@ -22,7 +22,7 @@
             android:paddingStart="@dimen/paddingItem"
             android:paddingEnd="@dimen/paddingItem"
             android:textSize="@dimen/title_top"
-            tools:text="@string/Item_top" />
+            android:text="Title"/>
 
         <TextView
             android:id="@+id/second_tv_of_item"
@@ -32,6 +32,16 @@
             android:paddingEnd="@dimen/paddingItem"
             android:paddingBottom="@dimen/paddingItemBottom"
             android:textSize="@dimen/title_end"
-            tools:text="@string/item_end" />
+            android:text="Description" />
+
+
+        <TextView
+            android:id="@+id/date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="end"
+            android:text="TextView" />
+
     </LinearLayout>
 </androidx.cardview.widget.CardView>

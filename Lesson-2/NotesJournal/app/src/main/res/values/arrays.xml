@@ -20,23 +20,27 @@
         <item>Заметка_18</item>
         <item>Заметка_19</item>
         <item>Заметка_20</item>
-        <item>Заметка_21</item>
-        <item>Заметка_22</item>
+    </string-array>
+
+    <string-array name="descriptions">
+        <item>@string/description1</item>
+        <item>@string/description2</item>
+        <item>@string/description3</item>
+        <item>@string/description4</item>
+        <item>@string/description5</item>
+        <item>@string/description6</item>
+        <item>@string/description7</item>
+        <item>@string/description8</item>
+        <item>@string/description9</item>
+        <item>@string/description10</item>
+        <item>@string/description11</item>
+        <item>@string/description12</item>
+        <item>@string/description13</item>
+        <item>@string/description14</item>
+        <item>@string/description15</item>
+        <item>@string/description16</item>
+        <item>@string/description17</item>
     </string-array>
 
 
-    <array name="colors">
-        <item>@color/navajo_white</item>
-        <item>@color/hot_pink</item>
-        <item>@color/plum</item>
-        <item>@color/powder_blue</item>
-        <item>@color/yellow_green</item>
-        <item>@color/peru</item>
-        <item>@color/pale_green</item>
-        <item>@color/light_sky_blue</item>
-        <item>@color/dark_salmon</item>
-        <item>@color/olive</item>
-        <item>@color/medium_slate_blue</item>
-        <item>@color/dark_turquoise</item>
-    </array>
 </resources>

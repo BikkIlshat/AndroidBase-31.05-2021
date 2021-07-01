@@ -1,7 +1,11 @@
 package ru.geekbrains.notesjournal;
 
 
-import androidx.annotation.NonNull;
+import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
+import android.widget.Toast;
+
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
@@ -9,35 +13,26 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-
-import android.content.SharedPreferences;
-import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
-import android.view.View;
-import android.widget.Button;
-import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-import java.util.List;
-
+import ru.geekbrains.notesjournal.observer.Publisher;
 import ru.geekbrains.notesjournal.ui.NotesJournalFragment;
 
 public class MainActivity extends AppCompatActivity {
+
+    private Publisher publisher = new Publisher();
+    private Navigation navigation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        navigation = new Navigation(getSupportFragmentManager());
         initView();
-        FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-        fragmentTransaction.replace(R.id.list_of_notes_fragment_container, new NotesJournalFragment());
-        fragmentTransaction.commit();
-//        Fragment fragment = NotesJournalFragment.newInstance();
-//        addFragment(fragment);
+        Fragment fragment = NotesJournalFragment.newInstance();
+        getNavigation().addFragment(fragment, false);
+
 
     }
 
@@ -47,6 +42,13 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
+    public Publisher getPublisher() {
+        return publisher;
+    }
+
+    public Navigation getNavigation() {
+        return navigation;
+    }
 
     // регистрация drawer
     private void initDrawer(Toolbar toolbar) {
@@ -60,16 +62,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Обработка навигационного меню
         NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                int id = item.getItemId();
-                if (navigateFragment(id)){
-                    drawer.closeDrawer(GravityCompat.START);
-                    return true;
-                }
-                return false;
+        navigationView.setNavigationItemSelectedListener(item -> {
+            int id = item.getItemId();
+            if (navigateFragment(id)){
+                drawer.closeDrawer(GravityCompat.START);
+                return true;
             }
+            return false;
         });
     }
 
@@ -129,19 +128,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-//    private void addFragment(Fragment fragment){
-////Получить менеджер фрагментов
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//// Открыть транзакцию
-//        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-//// Удалить видимый фрагмент
-//        fragmentTransaction.replace(R.id.fragment_container, fragment);
-//        fragmentTransaction.addToBackStack(null);
-//
-//
-//        // Закрыть транзакцию
-//        fragmentTransaction.commit();
-//    }
 
 
     }
