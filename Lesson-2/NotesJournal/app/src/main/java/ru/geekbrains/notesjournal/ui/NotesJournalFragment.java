@@ -155,8 +155,8 @@ public class NotesJournalFragment extends Fragment {
             navigation.addFragment(NoteFragment.newInstance(data.getNoteData(position)),
                     true);
             publisher.subscribe(note1 -> {
-              data.clearNoteData(); // Я всю голову сломал, почему у вас при возврате теряются все данные, оказывается из-за этого. Может тут не надо очищать все данные?
-                adapter.notifyItemChanged(position);
+//              data.clearNoteData();
+              adapter.notifyItemChanged(position);
             });
         });
 
