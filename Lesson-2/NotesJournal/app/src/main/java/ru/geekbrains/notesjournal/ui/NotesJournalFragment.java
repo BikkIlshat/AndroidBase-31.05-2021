@@ -96,55 +96,50 @@ public class NotesJournalFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        switch (item.getItemId()) {
+
+        return onItemSelected(item.getItemId()) || super.onOptionsItemSelected(item);
+    }
+
+
+    @Override
+    public boolean onContextItemSelected(@NonNull @NotNull MenuItem item) {
+        return onItemSelected(item.getItemId()) || super.onContextItemSelected(item);
+    }
+
+
+    private boolean onItemSelected(int menuItem) {
+        switch (menuItem) {
             case R.id.action_add:
                 navigation.addFragment(NoteFragment.newInstance(), true);
                 publisher.subscribe(new Observer() {
                     @Override
                     public void updateNoteData(NoteData noteData) {
                         data.addNoteData(noteData);
-                        adapter.notifyItemInserted(data.getSize() - 1);
-                        recyclerView.scrollToPosition(data.getSize() - 1);
+                        adapter.notifyItemInserted(0);
+                        recyclerView.scrollToPosition(0);
                     }
                 });
                 return true;
-            case R.id.action_clear:
-                data.clearNoteData();
-                adapter.notifyDataSetChanged();
-                return true;
-
-
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-
-
-
-    @Override
-    public boolean onContextItemSelected(@NonNull @NotNull MenuItem item) {
-        final int position = adapter.getMenuPosition();
-        switch(item.getItemId()){
             case R.id.action_update:
-                navigation.addFragment(NoteFragment.newInstance(data.getNoteData(position)), true);
+                int updatePosition = adapter.getMenuPosition();
+                navigation.addFragment(NoteFragment.newInstance(data.getNoteData(updatePosition)), true);
                 publisher.subscribe(noteData -> {
-                    data.updateNoteData(position, noteData);
-                    adapter.notifyItemChanged(position);
+                    data.updateNoteData(updatePosition, noteData);
+                    adapter.notifyItemChanged(updatePosition);
                 });
                 return true;
             case R.id.action_delete:
-                data.deleteNoteData(position);
-                adapter.notifyItemRemoved(position);
+                int deletePosition = adapter.getMenuPosition();
+                data.deleteNoteData(deletePosition);
+                adapter.notifyItemRemoved(deletePosition);
                 return true;
             case R.id.action_clear:
                 data.clearNoteData();
                 adapter.notifyDataSetChanged();
                 return true;
-
         }
-        return super.onContextItemSelected(item);
+        return false;
     }
-
 
 
     private void initRecyclerView(View view) {
@@ -160,7 +155,7 @@ public class NotesJournalFragment extends Fragment {
             navigation.addFragment(NoteFragment.newInstance(data.getNoteData(position)),
                     true);
             publisher.subscribe(note1 -> {
-               data.clearNoteData();
+              data.clearNoteData(); // Я всю голову сломал, почему у вас при возврате теряются все данные, оказывается из-за этого. Может тут не надо очищать все данные?
                 adapter.notifyItemChanged(position);
             });
         });
