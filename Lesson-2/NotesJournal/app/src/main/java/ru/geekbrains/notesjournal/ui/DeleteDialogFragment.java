@@ -13,11 +13,9 @@ import com.google.android.material.button.MaterialButton;
 
 import ru.geekbrains.notesjournal.R;
 
-public class DialogCustomFragment extends DialogFragment {
+public class DeleteDialogFragment extends DialogFragment {
 
-private DeleteDialogListener deleteDialogListener;
-
-
+    private DeleteDialogListener deleteDlgListener;
 
     @NonNull
     @Override
@@ -26,15 +24,15 @@ private DeleteDialogListener deleteDialogListener;
                 inflate(R.layout.delete_note_dialog_fragment, null);
         MaterialButton confirmDelete = contentView.findViewById(R.id.confirm_delete_note_dialog_button);
         confirmDelete.setOnClickListener(v -> {
-            if (deleteDialogListener != null) {
-                deleteDialogListener.onDelete();
+            if (deleteDlgListener != null) {
+                deleteDlgListener.onDelete();
                 dismiss();
             }
         });
         MaterialButton cancelDelete = contentView.findViewById(R.id.no_delete_note_dialog_button);
         cancelDelete.setOnClickListener(v -> {
-            if (deleteDialogListener != null) {
-                deleteDialogListener.onCancelDelete();
+            if (deleteDlgListener != null) {
+                deleteDlgListener.onCancelDelete();
                 dismiss();
             }
         });
@@ -44,7 +42,6 @@ private DeleteDialogListener deleteDialogListener;
     }
 
     public void setOnDialogListener(DeleteDialogListener deleteDlgListener) {
-        this.deleteDialogListener = deleteDlgListener;
+        this.deleteDlgListener = deleteDlgListener;
     }
 }
-

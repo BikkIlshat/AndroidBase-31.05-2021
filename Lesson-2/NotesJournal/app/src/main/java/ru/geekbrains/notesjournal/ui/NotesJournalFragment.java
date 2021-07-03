@@ -28,7 +28,6 @@ import ru.geekbrains.notesjournal.R;
 import ru.geekbrains.notesjournal.data.NoteData;
 import ru.geekbrains.notesjournal.data.NoteSource;
 import ru.geekbrains.notesjournal.data.NoteSourceFirebaseImpl;
-import ru.geekbrains.notesjournal.data.NoteSourceResponse;
 import ru.geekbrains.notesjournal.observer.Observer;
 import ru.geekbrains.notesjournal.observer.Publisher;
 
@@ -52,12 +51,7 @@ public class NotesJournalFragment extends Fragment {
         View view = inflater.inflate(R.layout.notes_journal_fragment, container, false);
         setHasOptionsMenu(true);
         initRecyclerView(view);
-        data = new NoteSourceFirebaseImpl().init(new NoteSourceResponse() {
-            @Override
-            public void initialized(NoteSource noteData) {
-                adapter.notifyDataSetChanged();
-            }
-        });
+        data = new NoteSourceFirebaseImpl().init(noteData -> adapter.notifyDataSetChanged());
         adapter.setDataSource(data);
         return view;
     }
@@ -96,7 +90,6 @@ public class NotesJournalFragment extends Fragment {
 
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-
         return onItemSelected(item.getItemId()) || super.onOptionsItemSelected(item);
     }
 
@@ -120,6 +113,7 @@ public class NotesJournalFragment extends Fragment {
                     }
                 });
                 return true;
+
             case R.id.action_update:
                 int updatePosition = adapter.getMenuPosition();
                 navigation.addFragment(NoteFragment.newInstance(data.getNoteData(updatePosition)), true);
@@ -128,11 +122,28 @@ public class NotesJournalFragment extends Fragment {
                     adapter.notifyItemChanged(updatePosition);
                 });
                 return true;
+
             case R.id.action_delete:
                 int deletePosition = adapter.getMenuPosition();
-                data.deleteNoteData(deletePosition);
-                adapter.notifyItemRemoved(deletePosition);
+                DeleteDialogFragment deleteDlgFragment = new DeleteDialogFragment();
+                deleteDlgFragment.setCancelable(false);
+                deleteDlgFragment.setOnDialogListener(new DeleteDialogListener() {
+                    @Override
+                    public void onDelete() {
+                        data.deleteNoteData(deletePosition);
+                        adapter.notifyItemRemoved(deletePosition);
+                        deleteDlgFragment.dismiss();
+                    }
+
+                    @Override
+                    public void onCancelDelete() {
+                        deleteDlgFragment.dismiss();
+                    }
+                });
+                deleteDlgFragment.show(requireActivity().getSupportFragmentManager(),
+                        "DeleteFragmentTag");
                 return true;
+
             case R.id.action_clear:
                 data.clearNoteData();
                 adapter.notifyDataSetChanged();
