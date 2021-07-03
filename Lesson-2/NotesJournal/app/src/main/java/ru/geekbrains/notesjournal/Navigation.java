@@ -15,13 +15,9 @@ public class Navigation {
 
     public void addFragment(Fragment fragment, boolean useBackStack){
 
-
-        // Открыть транзакцию
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        // Удалить видимый фрагмент
         fragmentTransaction.replace(R.id.list_of_notes_fragment_container, fragment);
         fragmentTransaction.addToBackStack(null);
-        // Закрыть транзакцию
         fragmentTransaction.commit();
     }
 }

@@ -22,37 +22,28 @@ import ru.geekbrains.notesjournal.data.NoteSource;
 public class NotesJournalAdapter extends RecyclerView.Adapter<NotesJournalAdapter.ViewHolder> {
 
     private final static String TAG = "NoteData";
-    private final NoteSource dataSource;
+    private NoteSource dataSource;
     private final Fragment fragment;
-    private OnItemClickListener itemClickListener;// Слушатель будетустанавливаться извне
+    private OnItemClickListener itemClickListener;
     private int menuPosition;
 
 
-    // Передаём в конструктор источник данных
-    // В нашем случае это массив, но может быть и запрос к БД
+    public NotesJournalAdapter(Fragment fragment) {
 
-
-    public NotesJournalAdapter(NoteSource dataSource, Fragment fragment) {
-        this.dataSource = dataSource;
         this.fragment = fragment;
     }
 
-    // Создать новый элемент пользовательского интерфейса
-    // Запускается менеджером
-
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        // Создаём новый элемент пользовательского интерфейса Через Inflater
+
         View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.item, parent, false);
-        // Здесь можно установить всякие параметры
+
         Log.d(TAG, "onCreateViewHolder");
-        return new ViewHolder(v);// возвращает новый ViewHolder с параметрами (v) которые только-что создали выше
+        return new ViewHolder(v);
     }
 
 
-    // Заменить данные в пользовательском интерфейсе
-    // Вызывается менеджером
     @Override
     public void onBindViewHolder(@NonNull NotesJournalAdapter.ViewHolder holder,
                                  int position) {
@@ -60,7 +51,7 @@ public class NotesJournalAdapter extends RecyclerView.Adapter<NotesJournalAdapte
         Log.d(TAG, String.format("onBindViewHolder - %d", position));
     }
 
-    // Вернуть размер данных, вызывается менеджером
+
     @Override
     public int getItemCount() {
         return dataSource.getSize();
@@ -71,20 +62,19 @@ public class NotesJournalAdapter extends RecyclerView.Adapter<NotesJournalAdapte
     }
 
 
-    // Сеттер слушателя нажатий
     public void setOnItemClickListener(OnItemClickListener itemClickListener){
         this.itemClickListener = itemClickListener;
     }
 
+    public void setDataSource(NoteSource dataSource) {
+        this.dataSource = dataSource;
+        notifyDataSetChanged();
+    }
 
-    // Интерфейс для обработки нажатий, как в ListView
     public interface OnItemClickListener {
         void onItemClick(View view , int position);
     }
 
-    /// Этот класс хранит связь между данными и элементами View
-    // Сложные данные могут потребовать несколько View на
-    // один пункт списка
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 

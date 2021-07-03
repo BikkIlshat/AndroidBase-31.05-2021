@@ -19,12 +19,16 @@ public class NoteDataSourceImpl implements  NoteSource {
     }
 
 
-    public NoteDataSourceImpl init() {
+    public NoteDataSourceImpl init(NoteSourceResponse noteSourceResponse){
         String[] titles = resources.getStringArray(R.array.notes);
         String[] descriptions = resources.getStringArray(R.array.descriptions);
 
         for(int i = 0; i < descriptions.length; i++){
             noteDataSource.add(new NoteData(titles[i], descriptions[i], Calendar.getInstance().getTime()));
+        }
+
+        if (noteSourceResponse != null) {
+            noteSourceResponse.initialized(this);
         }
 
         return this;

@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "311089194977",
+    "project_id": "notes-journal",
+    "storage_bucket": "notes-journal.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:311089194977:android:7dd6a9018c21be810214a0",
+        "android_client_info": {
+          "package_name": "ru.geekbrains.notesjournal"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "311089194977-mc0hpc9m1a8c0selvuv46cj70uetv1lb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC617Nuj_oMVDb6J5NjCwVb9bQEbRpj1H4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "311089194977-mc0hpc9m1a8c0selvuv46cj70uetv1lb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
