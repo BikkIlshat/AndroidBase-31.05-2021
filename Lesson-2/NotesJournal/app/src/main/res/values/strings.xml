@@ -53,6 +53,9 @@
     <string name="update">Изменить</string>
     <string name="delete">Удалить</string>
     <string name="first_note_title">First node</string>
+    <string name="delete_note_dialog_button_no">НЕТ</string>
+    <string name="confirm_delete_button">ДА</string>
+    <string name="title_dialog">Удалить заметку?</string>
 
 
 </resources>
